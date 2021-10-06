@@ -1,6 +1,12 @@
 package com.example.onemessageapi.controller;
 
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 import com.example.onemessageapi.api.RegisterApi;
 import com.example.onemessageapi.model.request.CreateMeRequest;
@@ -16,7 +22,6 @@ public class RegisterController implements RegisterApi {
 
   @Override
   public ResponseEntity<Void> createMe(@Valid CreateMeRequest createMeRequest) {
-    // TODO Auto-generated method stub
 
     return new ResponseEntity<>(HttpStatus.OK);
   }
