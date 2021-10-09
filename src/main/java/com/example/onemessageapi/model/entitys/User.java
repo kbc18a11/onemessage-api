@@ -1,4 +1,4 @@
-package com.example.onemessageapi.entitys;
+package com.example.onemessageapi.model.entitys;
 
 import java.util.Date;
 
