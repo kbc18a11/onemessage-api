@@ -17,6 +17,7 @@ jobs:
       - name: Build with Maven
         run: mvn package spring-boot:repackage
   test:
+    runs-on: ubuntu-latest
     steps:
       - name: Test with docker-compose stack
         run: docker-compose up -d --remove-orphans
