@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: cd
-        run: ls ../../onemessage-api -a
+        run: ls ../../onemessage-api/onemessage-api -a
       - name: Test with docker-compose stack
         run: docker-compose up -d --remove-orphans
       - uses: actions/checkout@v2
