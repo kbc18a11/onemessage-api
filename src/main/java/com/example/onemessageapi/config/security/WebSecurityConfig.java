@@ -35,7 +35,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    // ログイン不要ページの設定
     http.authorizeRequests()
         .antMatchers("/register").permitAll()
         .mvcMatchers("/user/**").hasRole("unLockedUsers")

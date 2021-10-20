@@ -35,7 +35,7 @@ public class UserController implements MeApi {
     // IDの取得
     var userId = getRequest().map(request -> (String) request.getAttribute("userId", 0)).get();
 
-    var user = userService.getLoginUser(userId).get();
+    var user = userService.getLoginUser(userId);
 
     var getMeResponse = new GetMeResponse();
     getMeResponse.setName(user.getName());
