@@ -14,13 +14,17 @@ import javax.validation.constraints.*;
  * ユーザー情報
  */
 @ApiModel(description = "ユーザー情報")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-10-05T01:53:15.698503Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen",
+    date = "2021-10-18T03:09:09.476446Z[Etc/UTC]")
 public class GetMeResponse {
   @JsonProperty("id")
   private UUID id;
 
-  @JsonProperty("displayName")
-  private String displayName;
+  @JsonProperty("name")
+  private String name;
+
+  @JsonProperty("email")
+  private String email;
 
   public GetMeResponse id(UUID id) {
     this.id = id;
@@ -45,27 +49,49 @@ public class GetMeResponse {
     this.id = id;
   }
 
-  public GetMeResponse displayName(String displayName) {
-    this.displayName = displayName;
+  public GetMeResponse name(String name) {
+    this.name = name;
     return this;
   }
 
   /**
    * ニックネーム
    * 
-   * @return displayName
+   * @return name
    */
-  @ApiModelProperty(required = true, value = "ニックネーム")
-  @NotNull
+  @ApiModelProperty(value = "ニックネーム")
 
   @Size(min = 1, max = 32)
-  public String getDisplayName() {
-    return displayName;
+  public String getName() {
+    return name;
   }
 
-  public void setDisplayName(String displayName) {
-    this.displayName = displayName;
+  public void setName(String name) {
+    this.name = name;
   }
+
+  public GetMeResponse email(String email) {
+    this.email = email;
+    return this;
+  }
+
+  /**
+   * メールアドレス
+   * 
+   * @return email
+   */
+  @ApiModelProperty(value = "メールアドレス")
+
+  @Size(min = 1, max = 255)
+  @javax.validation.constraints.Email
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -76,12 +102,14 @@ public class GetMeResponse {
       return false;
     }
     GetMeResponse getMeResponse = (GetMeResponse) o;
-    return Objects.equals(this.id, getMeResponse.id) && Objects.equals(this.displayName, getMeResponse.displayName);
+    return Objects.equals(this.id, getMeResponse.id) &&
+        Objects.equals(this.name, getMeResponse.name) &&
+        Objects.equals(this.email, getMeResponse.email);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, displayName);
+    return Objects.hash(id, name, email);
   }
 
   @Override
@@ -90,14 +118,14 @@ public class GetMeResponse {
     sb.append("class GetMeResponse {\n");
 
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("}");
     return sb.toString();
   }
 
   /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
+   * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
     if (o == null) {
@@ -106,3 +134,4 @@ public class GetMeResponse {
     return o.toString().replace("\n", "\n    ");
   }
 }
+

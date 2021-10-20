@@ -1,7 +1,6 @@
 package com.example.onemessageapi.model.entitys;
 
 import java.util.Date;
-
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -18,17 +17,25 @@ public class User {
   @Id
   private String id;
 
-  @Column(length = 32)
+  @Column(length = 32, nullable = false)
   private String name;
 
-  @Column(length = 255, unique = true)
+  @Column(length = 255, unique = true, nullable = false)
   private String email;
 
-  @Column(length = 255)
+  @Column(length = 255, nullable = false)
   private String password;
 
+  // ユーザアカウントがロックされているかの設定
+  @Column(columnDefinition = "boolean default false", nullable = false)
+  private boolean accountNonLocked;
+
+  // 作成日時
+  @Column(nullable = false)
   private Date createAt;
 
+  // 更新日時
+  @Column(nullable = false)
   private Date updateAt;
 
   /**
@@ -37,6 +44,7 @@ public class User {
   @PrePersist
   public void onPrePersist() {
     this.createAt = new Date();
+    this.updateAt = new Date();
   }
 
   /**

@@ -24,7 +24,7 @@ public class RegisterService {
    */
   public void register(User user) throws Exception {
     // メールアドレスが存在しているか
-    if (repository.findByEmail(user.getEmail()).size() > 0) {
+    if (repository.existsByEmail(user.getEmail())) {
       throw new Exception("登録済みのメールアドレスです");
     }
 
