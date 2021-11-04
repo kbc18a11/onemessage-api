@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.NativeWebRequest;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 public class UserController implements MeApi {
@@ -32,16 +33,22 @@ public class UserController implements MeApi {
 
   @Override
   public ResponseEntity<GetMeResponse> getMe() {
-    // IDの取得
-    var userId = getRequest().map(request -> (String) request.getAttribute("userId", 0)).get();
+    var userId = "";
+
+    try {
+      // IDの取得
+      userId = getRequest().map(request -> (String) request.getAttribute("userId", 0)).get();
+    } catch (Exception e) {
+      throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
+    }
 
     var user = userService.getLoginUser(userId);
 
-    var getMeResponse = new GetMeResponse();
-    getMeResponse.setName(user.getName());
-    getMeResponse.setId(UUID.fromString(user.getId()));
-    getMeResponse.setEmail(user.getEmail());
+    var response = new GetMeResponse();
+    response.setName(user.getName());
+    response.setId(UUID.fromString(user.getId()));
+    response.setEmail(user.getEmail());
 
-    return new ResponseEntity<GetMeResponse>(getMeResponse, HttpStatus.OK);
+    return new ResponseEntity<GetMeResponse>(response, HttpStatus.OK);
   }
 }

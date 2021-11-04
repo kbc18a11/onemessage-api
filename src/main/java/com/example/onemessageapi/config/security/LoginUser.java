@@ -19,6 +19,7 @@ public class LoginUser extends org.springframework.security.core.userdetails.Use
   public LoginUser(User user) {
     super(user.getName(), user.getPassword(), determineRoles(user.isAccountNonLocked()));
     this.user = user;
+
   }
 
   public User getUser() {

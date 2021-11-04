@@ -17,6 +17,7 @@ public class JwtAuthenticationFailureHandler implements AuthenticationFailureHan
   public void onAuthenticationFailure(HttpServletRequest request,
       HttpServletResponse response,
       AuthenticationException exception) throws IOException, ServletException {
+
     if (response.isCommitted()) {
       log.info("Response has already been committed.");
       return;

@@ -1,6 +1,7 @@
 package com.example.onemessageapi.config.security;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
 import com.example.onemessageapi.repository.UserRepository;
 import com.example.onemessageapi.service.UserDetailsServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.GenericFilterBean;
 
 @Configuration
@@ -35,7 +39,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.authorizeRequests()
+    http
+        .cors()
+        .and()
+        .authorizeRequests()
         .antMatchers("/register").permitAll()
         .mvcMatchers("/user/**").hasRole("unLockedUsers")
         .and()
@@ -66,6 +73,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // セッションはStatelessなので使わない
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
   }
+
+  /*
+   * @Bean CorsConfigurationSource corsConfigurationSource() { CorsConfiguration configuration = new
+   * CorsConfiguration(); configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+   * configuration.setAllowedMethods(Arrays.asList("GET", "POST", "DELETE", "PUT"));
+   * UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+   * source.registerCorsConfiguration("/**", configuration); return source; }
+   */
 
   /**
    * 認証が必要なリソースに未認証でアクセスしたときの処理

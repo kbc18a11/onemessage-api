@@ -18,7 +18,6 @@ public class JwtAccessDeniedHandler implements AccessDeniedHandler {
       HttpServletResponse response,
       AccessDeniedException exception) throws IOException {
     if (response.isCommitted()) {
-      log.info("Response has already been committed.");
       return;
     }
     dump(exception);
