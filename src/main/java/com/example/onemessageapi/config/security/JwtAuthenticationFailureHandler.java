@@ -22,7 +22,7 @@ public class JwtAuthenticationFailureHandler implements AuthenticationFailureHan
       log.info("Response has already been committed.");
       return;
     }
-    response.sendError(HttpStatus.FORBIDDEN.value(), HttpStatus.FORBIDDEN.getReasonPhrase());
+    response.sendError(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase());
   }
 
 }
