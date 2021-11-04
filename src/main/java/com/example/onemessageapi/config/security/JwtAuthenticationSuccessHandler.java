@@ -24,6 +24,7 @@ public class JwtAuthenticationSuccessHandler implements AuthenticationSuccessHan
 
   public JwtAuthenticationSuccessHandler(String secretKey) {
     Objects.requireNonNull(secretKey, "secret key must be not null");
+
     try {
       this.algorithm = Algorithm.HMAC512(secretKey);
     } catch (IllegalArgumentException e) {
@@ -43,7 +44,6 @@ public class JwtAuthenticationSuccessHandler implements AuthenticationSuccessHan
       HttpServletResponse response,
       Authentication auth) {
     if (response.isCommitted()) {
-      log.info("Response has already been committed.");
       return;
     }
     setToken(response, generateToken(auth));
@@ -80,6 +80,7 @@ public class JwtAuthenticationSuccessHandler implements AuthenticationSuccessHan
    */
   private void setToken(HttpServletResponse response, String token) {
     response.setHeader("Authorization", String.format("Bearer %s", token));
+    response.setHeader("Access-Control-Expose-Headers", "Authorization");
   }
 
   /**

@@ -22,9 +22,9 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
       HttpServletResponse response,
       AuthenticationException exception) throws IOException {
     if (response.isCommitted()) {
-      log.info("Response has already been committed.");
       return;
     }
+
     dump(exception);
     response.sendError(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase());
   }

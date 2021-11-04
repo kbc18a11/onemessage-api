@@ -41,12 +41,14 @@ public class JwtTokenFilter extends GenericFilterBean {
 
     // トークンの存在確認
     String token = resolveToken(request);
+
     if (token == null) {
       filterChain.doFilter(request, response);
       return;
     }
 
     try {
+      // コントローラーに送るリクエストボディにJWTからデコードしたユーザーIDをセット
       request.setAttribute("userId", authentication(verifyToken(token)));
     } catch (JWTVerificationException e) {
       log.error("verify token error", e);
