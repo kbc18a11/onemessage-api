@@ -4,6 +4,7 @@
  */
 package com.example.onemessageapi.api;
 
+import com.example.onemessageapi.model.response.GetMeResponse;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,13 +16,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
-import com.example.onemessageapi.model.response.GetMeResponse;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2021-10-18T03:09:09.476446Z[Etc/UTC]")
+        date = "2021-11-08T04:28:10.768641Z[Etc/UTC]")
 @Validated
 @Api(value = "me", description = "the me API")
 public interface MeApi {
