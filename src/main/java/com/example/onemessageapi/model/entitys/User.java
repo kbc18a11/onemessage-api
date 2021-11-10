@@ -28,7 +28,7 @@ public class User {
 
   // ユーザアカウントがロックされているかの設定
   @Column(columnDefinition = "boolean default false", nullable = false)
-  private boolean accountNonLocked;
+  private boolean accountLocked;
 
   // 作成日時
   @Column(nullable = false)

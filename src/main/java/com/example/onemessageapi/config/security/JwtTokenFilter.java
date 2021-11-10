@@ -93,9 +93,9 @@ public class JwtTokenFilter extends GenericFilterBean {
   private String authentication(DecodedJWT jwt) {
     String userId = jwt.getSubject();
     userRepository.findById(userId).ifPresent(user -> {
-      LoginUser LoginUser = new LoginUser(user);
+      LoginUser loginUser = new LoginUser(user);
       SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(
-          LoginUser, null, LoginUser.getAuthorities()));
+          loginUser, null, loginUser.getAuthorities()));
     });
 
     return userId;
