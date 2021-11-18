@@ -5,42 +5,64 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.math.BigDecimal;
 import org.openapitools.jackson.nullable.JsonNullable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * OAuth認可用暗証番号
+ * Twitterのアクセストークン
  */
-@ApiModel(description = "OAuth認可用暗証番号")
+@ApiModel(description = "Twitterのアクセストークン")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen",
-    date = "2021-11-08T04:28:10.768641Z[Etc/UTC]")
+    date = "2021-11-18T01:14:22.557617Z[Etc/UTC]")
 public class CreateTwitterAccessTokenRequest {
-  @JsonProperty("passwordNumber")
-  private BigDecimal passwordNumber;
+  @JsonProperty("accessToken")
+  private String accessToken;
 
-  public CreateTwitterAccessTokenRequest passwordNumber(BigDecimal passwordNumber) {
-    this.passwordNumber = passwordNumber;
+  @JsonProperty("secretKey")
+  private String secretKey;
+
+  public CreateTwitterAccessTokenRequest accessToken(String accessToken) {
+    this.accessToken = accessToken;
     return this;
   }
 
   /**
-   * OAuth認可用暗証番号
+   * Twitterのアクセストークン
    * 
-   * @return passwordNumber
+   * @return accessToken
    */
-  @ApiModelProperty(required = true, value = "OAuth認可用暗証番号")
+  @ApiModelProperty(required = true, value = "Twitterのアクセストークン")
   @NotNull
 
-  @Valid
 
-  public BigDecimal getPasswordNumber() {
-    return passwordNumber;
+  public String getAccessToken() {
+    return accessToken;
   }
 
-  public void setPasswordNumber(BigDecimal passwordNumber) {
-    this.passwordNumber = passwordNumber;
+  public void setAccessToken(String accessToken) {
+    this.accessToken = accessToken;
+  }
+
+  public CreateTwitterAccessTokenRequest secretKey(String secretKey) {
+    this.secretKey = secretKey;
+    return this;
+  }
+
+  /**
+   * Twitterのアクセス用秘密鍵
+   * 
+   * @return secretKey
+   */
+  @ApiModelProperty(value = "Twitterのアクセス用秘密鍵")
+
+
+  public String getSecretKey() {
+    return secretKey;
+  }
+
+  public void setSecretKey(String secretKey) {
+    this.secretKey = secretKey;
   }
 
 
@@ -54,12 +76,13 @@ public class CreateTwitterAccessTokenRequest {
     }
     CreateTwitterAccessTokenRequest createTwitterAccessTokenRequest =
         (CreateTwitterAccessTokenRequest) o;
-    return Objects.equals(this.passwordNumber, createTwitterAccessTokenRequest.passwordNumber);
+    return Objects.equals(this.accessToken, createTwitterAccessTokenRequest.accessToken) &&
+        Objects.equals(this.secretKey, createTwitterAccessTokenRequest.secretKey);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(passwordNumber);
+    return Objects.hash(accessToken, secretKey);
   }
 
   @Override
@@ -67,7 +90,8 @@ public class CreateTwitterAccessTokenRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateTwitterAccessTokenRequest {\n");
 
-    sb.append("    passwordNumber: ").append(toIndentedString(passwordNumber)).append("\n");
+    sb.append("    accessToken: ").append(toIndentedString(accessToken)).append("\n");
+    sb.append("    secretKey: ").append(toIndentedString(secretKey)).append("\n");
     sb.append("}");
     return sb.toString();
   }

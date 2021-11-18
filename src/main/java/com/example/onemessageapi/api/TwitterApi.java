@@ -5,7 +5,6 @@
 package com.example.onemessageapi.api;
 
 import com.example.onemessageapi.model.request.CreateTwitterAccessTokenRequest;
-import com.example.onemessageapi.model.response.GetTwitterAuthUrlResponse;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -22,7 +21,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2021-11-08T04:28:10.768641Z[Etc/UTC]")
+        date = "2021-11-18T01:14:22.557617Z[Etc/UTC]")
 @Validated
 @Api(value = "twitter", description = "the twitter API")
 public interface TwitterApi {
@@ -32,19 +31,19 @@ public interface TwitterApi {
     }
 
     /**
-     * POST /twitter/auth : アクセストークンの登録 暗証番号から、OAuth認可を行い、取得したアクセストークンを登録する
+     * POST /twitter/auth : アクセストークンの登録 Firebaseから取得した、アクセストークンを登録する
      *
      * @param createTwitterAccessTokenRequest (required)
-     * @return OK (status code 201) or Bad Request (status code 400) or Unauthorized (status code
-     *         401) or Internal Server Error (status code 500)
+     * @return Created (status code 201) or Bad Request (status code 400) or Unauthorized (status
+     *         code 401) or Internal Server Error (status code 500)
      */
     @ApiOperation(value = "アクセストークンの登録", nickname = "createTwitterAccessToken",
-            notes = "暗証番号から、OAuth認可を行い、取得したアクセストークンを登録する", authorizations = {
+            notes = "Firebaseから取得した、アクセストークンを登録する", authorizations = {
 
                     @Authorization(value = "Authorization")
             }, tags = {"twitter",})
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "OK"),
+            @ApiResponse(code = 201, message = "Created"),
             @ApiResponse(code = 400, message = "Bad Request"),
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 500, message = "Internal Server Error")})
@@ -60,36 +59,25 @@ public interface TwitterApi {
 
 
     /**
-     * GET /twitter/auth : TwitterのOAuth認可用のURL取得 TwitterのOAuth認可用のURLを習得
+     * DELETE /twitter/auth : twitterアクセストークンを削除 アクセストークンを削除
      *
      * @return OK (status code 200) or Bad Request (status code 400) or Unauthorized (status code
      *         401) or Internal Server Error (status code 500)
      */
-    @ApiOperation(value = "TwitterのOAuth認可用のURL取得", nickname = "getTwitterAuthUrl",
-            notes = "TwitterのOAuth認可用のURLを習得", response = GetTwitterAuthUrlResponse.class,
-            authorizations = {
+    @ApiOperation(value = "twitterアクセストークンを削除", nickname = "deleteTwitterAccessToken",
+            notes = "アクセストークンを削除", authorizations = {
 
                     @Authorization(value = "Authorization")
             }, tags = {"twitter",})
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "OK", response = GetTwitterAuthUrlResponse.class),
+            @ApiResponse(code = 200, message = "OK"),
             @ApiResponse(code = 400, message = "Bad Request"),
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 500, message = "Internal Server Error")})
     @RequestMapping(
-            method = RequestMethod.GET,
-            value = "/twitter/auth",
-            produces = {"application/json"})
-    default ResponseEntity<GetTwitterAuthUrlResponse> getTwitterAuthUrl() {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType : MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"authUrl\" : \"authUrl\" }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-            }
-        });
+            method = RequestMethod.DELETE,
+            value = "/twitter/auth")
+    default ResponseEntity<Void> deleteTwitterAccessToken() {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

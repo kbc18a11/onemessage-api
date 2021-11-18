@@ -34,3 +34,4 @@ build/
 
 db
 src/main/resources/application.properties
+src/main/resources/twitter4j.properties

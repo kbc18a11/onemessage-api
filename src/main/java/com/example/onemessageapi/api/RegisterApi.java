@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2021-11-08T04:28:10.768641Z[Etc/UTC]")
+        date = "2021-11-18T01:14:22.557617Z[Etc/UTC]")
 @Validated
 @Api(value = "register", description = "the register API")
 public interface RegisterApi {
