@@ -13,13 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.server.ResponseStatusException;
-import twitter4j.Query;
-import twitter4j.QueryResult;
-import twitter4j.Status;
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
-import twitter4j.auth.RequestToken;
 
 @RestController
 public class TwitterController implements TwitterApi {
@@ -80,23 +73,4 @@ public class TwitterController implements TwitterApi {
 
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
-
-  /**
-   * Twitterの認可URLを取得する
-   */
-  /*
-   * @Override public ResponseEntity<GetTwitterAuthUrlResponse> getTwitterAuthUrl() { var response =
-   * new GetTwitterAuthUrlResponse();
-   * 
-   * var twitterUserId = "suberumaiku";
-   * 
-   * try { Query query = new Query("source:twitter4j yusukey"); QueryResult result =
-   * twitter.search(query); for (Status status : result.getTweets()) { var user = status.getUser();
-   * System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText()); } } catch
-   * (TwitterException e) { e.printStackTrace(); System.err.println(e);
-   * 
-   * throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage()); }
-   * 
-   * return new ResponseEntity<GetTwitterAuthUrlResponse>(response, HttpStatus.OK); }
-   */
 }
