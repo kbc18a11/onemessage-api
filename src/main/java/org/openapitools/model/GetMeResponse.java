@@ -1,4 +1,4 @@
-package com.example.onemessageapi.model.response;
+package org.openapitools.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,9 +14,8 @@ import javax.validation.constraints.*;
  * ユーザー情報
  */
 @ApiModel(description = "ユーザー情報")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen",
-    date = "2021-11-18T01:14:22.557617Z[Etc/UTC]")
-public class GetMeResponse {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-11-30T02:19:55.570490Z[Etc/UTC]")
+public class GetMeResponse   {
   @JsonProperty("id")
   private UUID id;
 
@@ -33,9 +32,8 @@ public class GetMeResponse {
 
   /**
    * ID
-   * 
    * @return id
-   */
+  */
   @ApiModelProperty(required = true, value = "ID")
   @NotNull
 
@@ -56,12 +54,11 @@ public class GetMeResponse {
 
   /**
    * ニックネーム
-   * 
    * @return name
-   */
+  */
   @ApiModelProperty(value = "ニックネーム")
 
-  @Size(min = 1, max = 32)
+@Size(min = 1, max = 32) 
   public String getName() {
     return name;
   }
@@ -77,13 +74,11 @@ public class GetMeResponse {
 
   /**
    * メールアドレス
-   * 
    * @return email
-   */
+  */
   @ApiModelProperty(value = "メールアドレス")
 
-  @Size(min = 1, max = 255)
-  @javax.validation.constraints.Email
+@Size(min = 1, max = 255) @javax.validation.constraints.Email
   public String getEmail() {
     return email;
   }
@@ -116,7 +111,7 @@ public class GetMeResponse {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetMeResponse {\n");
-
+    
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
@@ -125,7 +120,8 @@ public class GetMeResponse {
   }
 
   /**
-   * Convert the given object to string with each line indented by 4 spaces (except the first line).
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
    */
   private String toIndentedString(Object o) {
     if (o == null) {

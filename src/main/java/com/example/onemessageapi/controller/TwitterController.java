@@ -2,9 +2,7 @@ package com.example.onemessageapi.controller;
 
 import java.util.Optional;
 import javax.validation.Valid;
-import com.example.onemessageapi.api.TwitterApi;
 import com.example.onemessageapi.model.entitys.TwitterAccount;
-import com.example.onemessageapi.model.request.CreateTwitterAccessTokenRequest;
 import com.example.onemessageapi.service.TwitterService;
 import com.example.onemessageapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.server.ResponseStatusException;
+import org.openapitools.api.TwitterApi;
+import org.openapitools.model.CreateTwitterAccessTokenRequest;
 
 @RestController
 public class TwitterController implements TwitterApi {

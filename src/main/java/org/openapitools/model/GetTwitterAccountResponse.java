@@ -1,4 +1,4 @@
-package com.example.onemessageapi.model.response;
+package org.openapitools.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,9 +13,8 @@ import javax.validation.constraints.*;
  * TwitterのOAuth認可用のURL
  */
 @ApiModel(description = "TwitterのOAuth認可用のURL")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen",
-    date = "2021-11-18T01:14:22.557617Z[Etc/UTC]")
-public class GetTwitterAccountResponse {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-11-30T02:19:55.570490Z[Etc/UTC]")
+public class GetTwitterAccountResponse   {
   @JsonProperty("screenName")
   private String screenName;
 
@@ -32,9 +31,8 @@ public class GetTwitterAccountResponse {
 
   /**
    * アカウント名
-   * 
    * @return screenName
-   */
+  */
   @ApiModelProperty(required = true, value = "アカウント名")
   @NotNull
 
@@ -54,9 +52,8 @@ public class GetTwitterAccountResponse {
 
   /**
    * アカウントアイコン画像
-   * 
    * @return profileImageURL
-   */
+  */
   @ApiModelProperty(required = true, value = "アカウントアイコン画像")
   @NotNull
 
@@ -76,9 +73,8 @@ public class GetTwitterAccountResponse {
 
   /**
    * アカウントページのURL
-   * 
    * @return accountUrl
-   */
+  */
   @ApiModelProperty(required = true, value = "アカウントページのURL")
   @NotNull
 
@@ -115,7 +111,7 @@ public class GetTwitterAccountResponse {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetTwitterAccountResponse {\n");
-
+    
     sb.append("    screenName: ").append(toIndentedString(screenName)).append("\n");
     sb.append("    profileImageURL: ").append(toIndentedString(profileImageURL)).append("\n");
     sb.append("    accountUrl: ").append(toIndentedString(accountUrl)).append("\n");
@@ -124,7 +120,8 @@ public class GetTwitterAccountResponse {
   }
 
   /**
-   * Convert the given object to string with each line indented by 4 spaces (except the first line).
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
    */
   private String toIndentedString(Object o) {
     if (o == null) {
