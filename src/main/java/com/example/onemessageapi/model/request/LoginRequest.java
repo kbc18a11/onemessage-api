@@ -15,39 +15,14 @@ import javax.validation.constraints.*;
 @ApiModel(description = "初期登録時のユーザー情報")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen",
     date = "2021-11-18T01:14:22.557617Z[Etc/UTC]")
-public class CreateMeRequest {
-  @JsonProperty("name")
-  private String name;
-
+public class LoginRequest {
   @JsonProperty("email")
   private String email;
 
   @JsonProperty("password")
   private String password;
 
-  public CreateMeRequest name(String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * ユーザーネーム
-   * 
-   * @return name
-   */
-  @ApiModelProperty(required = true, value = "ユーザーネーム")
-  @NotNull
-
-  @Size(min = 1, max = 32)
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public CreateMeRequest email(String email) {
+  public LoginRequest email(String email) {
     this.email = email;
     return this;
   }
@@ -70,7 +45,7 @@ public class CreateMeRequest {
     this.email = email;
   }
 
-  public CreateMeRequest password(String password) {
+  public LoginRequest password(String password) {
     this.password = password;
     return this;
   }
@@ -102,23 +77,21 @@ public class CreateMeRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateMeRequest createMeRequest = (CreateMeRequest) o;
-    return Objects.equals(this.name, createMeRequest.name) &&
-        Objects.equals(this.email, createMeRequest.email) &&
-        Objects.equals(this.password, createMeRequest.password);
+    LoginRequest loginRequest = (LoginRequest) o;
+    return Objects.equals(this.email, loginRequest.email) &&
+        Objects.equals(this.password, loginRequest.password);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, email, password);
+    return Objects.hash(email, password);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateMeRequest {\n");
+    sb.append("class LoginRequest {\n");
 
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("}");

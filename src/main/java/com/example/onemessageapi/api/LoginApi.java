@@ -4,7 +4,7 @@
  */
 package com.example.onemessageapi.api;
 
-import com.example.onemessageapi.model.response.GetMeResponse;
+import com.example.onemessageapi.model.request.LoginRequest;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,44 +23,32 @@ import java.util.Optional;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen",
         date = "2021-11-18T01:14:22.557617Z[Etc/UTC]")
 @Validated
-@Api(value = "me", description = "the me API")
-public interface MeApi {
+@Api(value = "login", description = "the login API")
+public interface LoginApi {
 
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
     }
 
     /**
-     * GET /me : ユーザー情報取得 ユーザー情報を習得
+     * POST /login : ログイン ログイン
      *
+     * @param loginRequest (required)
      * @return OK (status code 200) or Bad Request (status code 400) or Unauthorized (status code
      *         401) or Internal Server Error (status code 500)
      */
-    @ApiOperation(value = "ユーザー情報取得", nickname = "getMe", notes = "ユーザー情報を習得",
-            response = GetMeResponse.class, authorizations = {
-
-                    @Authorization(value = "Authorization")
-            }, tags = {"user",})
+    @ApiOperation(value = "ログイン", nickname = "login", notes = "ログイン", tags = {"auth",})
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "OK", response = GetMeResponse.class),
+            @ApiResponse(code = 200, message = "OK"),
             @ApiResponse(code = 400, message = "Bad Request"),
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 500, message = "Internal Server Error")})
     @RequestMapping(
-            method = RequestMethod.GET,
-            value = "/me",
-            produces = {"application/json"})
-    default ResponseEntity<GetMeResponse> getMe() {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType : MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString =
-                            "{ \"name\" : \"name\", \"id\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"email\" : \"email\" }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-            }
-        });
+            method = RequestMethod.POST,
+            value = "/login",
+            consumes = {"application/json"})
+    default ResponseEntity<Void> login(
+            @ApiParam(value = "", required = true) @Valid @RequestBody LoginRequest loginRequest) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

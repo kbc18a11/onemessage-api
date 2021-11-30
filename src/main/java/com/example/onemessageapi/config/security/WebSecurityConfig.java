@@ -44,7 +44,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .and()
         .authorizeRequests()
         .antMatchers("/register").permitAll()
-        .mvcMatchers("/user/**").hasRole("unLockedUsers")
+        .mvcMatchers("/user/**").hasRole("UNLOCKEDUSER")
+        .mvcMatchers("/me").hasRole("UNLOCKEDUSER")
+        .mvcMatchers("/twitter/**").hasRole("UNLOCKEDUSER")
         .and()
         // EXCEPTION
         .exceptionHandling()

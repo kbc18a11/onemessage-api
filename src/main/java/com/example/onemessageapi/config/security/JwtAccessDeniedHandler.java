@@ -21,7 +21,7 @@ public class JwtAccessDeniedHandler implements AccessDeniedHandler {
       return;
     }
     dump(exception);
-    response.sendError(HttpStatus.FORBIDDEN.value(), HttpStatus.FORBIDDEN.getReasonPhrase());
+    response.sendError(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase());
   }
 
   private void dump(AccessDeniedException e) {

@@ -1,34 +1,39 @@
 package com.example.onemessageapi.model.entitys;
 
 import java.util.Date;
-import lombok.Data;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "twitterAccounts")
+public class TwitterAccount {
   @Id
-  private String id;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
 
-  @Column(length = 32, nullable = false)
-  private String name;
+  // usersテーブルに対する外部キー
+  @ManyToOne
+  @JoinColumn(nullable = false)
+  private User user;
 
+  // アクセストークン
   @Column(length = 255, unique = true, nullable = false)
-  private String email;
+  private String accessToken;
 
-  @Column(length = 255, nullable = false)
-  private String password;
-
-  // ユーザアカウントがロックされているかの設定
-  @Column(columnDefinition = "boolean default false", nullable = false)
-  private boolean accountLocked;
+  // 秘密鍵
+  @Column(length = 255, unique = true, nullable = false)
+  private String secretKey;
 
   // 作成日時
   @Column(nullable = false)

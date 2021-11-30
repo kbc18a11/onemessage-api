@@ -11,15 +11,18 @@ public class LoginUser extends org.springframework.security.core.userdetails.Use
   // Userエンティティ
   private com.example.onemessageapi.model.entitys.User user;
 
-  private static final List<GrantedAuthority> unLockedUsers =
-      AuthorityUtils.createAuthorityList("unLockedUsers");
-  private static final List<GrantedAuthority> lockedUsers =
-      AuthorityUtils.createAuthorityList("lockedUsers");
+  // ロックされているユーザーロール
+  private static final List<GrantedAuthority> ROLE_UNLOCKUSER =
+      AuthorityUtils.createAuthorityList("ROLE_UNLOCKUSER");
+
+  // アンロックされているユーザーロール
+  private static final List<GrantedAuthority> ROLE_UNLOCKEDUSER =
+      AuthorityUtils.createAuthorityList("ROLE_UNLOCKEDUSER");
+
 
   public LoginUser(User user) {
-    super(user.getName(), user.getPassword(), determineRoles(user.isAccountNonLocked()));
+    super(user.getName(), user.getPassword(), determineRoles(user.isAccountLocked()));
     this.user = user;
-
   }
 
   public User getUser() {
@@ -27,6 +30,6 @@ public class LoginUser extends org.springframework.security.core.userdetails.Use
   }
 
   private static List<GrantedAuthority> determineRoles(boolean isAdmin) {
-    return isAdmin ? lockedUsers : unLockedUsers;
+    return isAdmin ? ROLE_UNLOCKUSER : ROLE_UNLOCKEDUSER;
   }
 }

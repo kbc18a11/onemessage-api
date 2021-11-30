@@ -30,7 +30,7 @@ public class UserServiceTest {
     user.setPassword("password");
     user.setPassword("password");
     user.setEmail("example@example.com");
-    user.setAccountNonLocked(false);
+    user.setAccountLocked(false);
 
     when(repository.findById(userId)).thenReturn(Optional.ofNullable(user));
 
