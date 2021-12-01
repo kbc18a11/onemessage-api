@@ -3,8 +3,6 @@ package com.example.onemessageapi.controller;
 import java.util.Optional;
 import java.util.UUID;
 
-import com.example.onemessageapi.api.MeApi;
-import com.example.onemessageapi.model.response.GetMeResponse;
 import com.example.onemessageapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.server.ResponseStatusException;
+import org.openapitools.api.MeApi;
+import org.openapitools.model.GetMeResponse;
 
 @RestController
 public class UserController implements MeApi {

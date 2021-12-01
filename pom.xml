@@ -130,6 +130,7 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+					<mainClass>com.example.onemessageapi.OnemessageapiApplication</mainClass>
 				</configuration>
 			</plugin>
 		</plugins>

@@ -23,7 +23,7 @@ public class TwitterAccount {
   private Integer id;
 
   // usersテーブルに対する外部キー
-  @ManyToOne
+  @OneToOne
   @JoinColumn(nullable = false)
   private User user;
 

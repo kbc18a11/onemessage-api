@@ -2,9 +2,7 @@ package com.example.onemessageapi.controller;
 
 import java.util.Optional;
 import javax.validation.Valid;
-import com.example.onemessageapi.api.TwitterApi;
 import com.example.onemessageapi.model.entitys.TwitterAccount;
-import com.example.onemessageapi.model.request.CreateTwitterAccessTokenRequest;
 import com.example.onemessageapi.service.TwitterService;
 import com.example.onemessageapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.server.ResponseStatusException;
+import org.openapitools.api.TwitterApi;
+import org.openapitools.model.CreateTwitterAccessTokenRequest;
+import org.openapitools.model.GetTwitterAccountResponse;
 
 @RestController
 public class TwitterController implements TwitterApi {
@@ -41,16 +42,9 @@ public class TwitterController implements TwitterApi {
   @Override
   public ResponseEntity<Void> createTwitterAccessToken(
       @Valid CreateTwitterAccessTokenRequest createTwitterAccessTokenRequest) {
-    var userId = "";
 
-    try {
-      // IDの取得
-      userId = getRequest().map(request -> (String) request.getAttribute("userId", 0)).get();
-    } catch (Exception e) {
-      System.err.println(e);
-
-      throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
-    }
+    // IDの取得
+    var userId = getRequest().map(request -> (String) request.getAttribute("userId", 0)).get();
 
     try {
       // ユーザー情報を取得
@@ -61,8 +55,6 @@ public class TwitterController implements TwitterApi {
       twitterAccount.setSecretKey(createTwitterAccessTokenRequest.getSecretKey());
       twitterAccount.setUser(user);
 
-      System.out.println(twitterAccount.getAccessToken());
-
       // アクセストークンと秘密鍵を保存
       twitterService.saveAccountTokenAndSecretKey(twitterAccount);
     } catch (Exception e) {
@@ -72,5 +64,26 @@ public class TwitterController implements TwitterApi {
     }
 
     return new ResponseEntity<>(HttpStatus.CREATED);
+  }
+
+  @Override
+  public ResponseEntity<GetTwitterAccountResponse> getTwitterAccount() {
+    // IDの取得
+    var userId = getRequest().map(request -> (String) request.getAttribute("userId", 0)).get();
+
+    try {
+      var twitterUser = twitterService.getAccountFindByUserId(userId);
+
+      var response = new GetTwitterAccountResponse();
+      response.setAccountUrl("https://twitter.com/" + twitterUser.getScreenName());
+      response.setProfileImageURL(twitterUser.get400x400ProfileImageURL());
+      response.setScreenName(twitterUser.getScreenName());
+
+      return new ResponseEntity<GetTwitterAccountResponse>(response, HttpStatus.OK);
+    } catch (Exception e) {
+      System.err.println(e);
+
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+    }
   }
 }

@@ -11,4 +11,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TwitterRepository extends JpaRepository<TwitterAccount, Integer> {
 
+  /**
+   * ユーザーIDが一致するデータを検索
+   * 
+   * @param userId
+   */
+  Optional<TwitterAccount> findByUserId(String userId);
 }

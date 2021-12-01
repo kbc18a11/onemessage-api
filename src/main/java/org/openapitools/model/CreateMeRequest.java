@@ -1,4 +1,4 @@
-package com.example.onemessageapi.model.request;
+package org.openapitools.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,30 +13,51 @@ import javax.validation.constraints.*;
  * 初期登録時のユーザー情報
  */
 @ApiModel(description = "初期登録時のユーザー情報")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen",
-    date = "2021-11-18T01:14:22.557617Z[Etc/UTC]")
-public class LoginRequest {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-12-01T03:05:48.192486Z[Etc/UTC]")
+public class CreateMeRequest   {
+  @JsonProperty("name")
+  private String name;
+
   @JsonProperty("email")
   private String email;
 
   @JsonProperty("password")
   private String password;
 
-  public LoginRequest email(String email) {
+  public CreateMeRequest name(String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * ユーザーネーム
+   * @return name
+  */
+  @ApiModelProperty(required = true, value = "ユーザーネーム")
+  @NotNull
+
+@Size(min = 1, max = 32) 
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public CreateMeRequest email(String email) {
     this.email = email;
     return this;
   }
 
   /**
    * メールアドレス
-   * 
    * @return email
-   */
+  */
   @ApiModelProperty(required = true, value = "メールアドレス")
   @NotNull
 
-  @Size(min = 1, max = 255)
-  @javax.validation.constraints.Email
+@Size(min = 1, max = 255) @javax.validation.constraints.Email
   public String getEmail() {
     return email;
   }
@@ -45,21 +66,19 @@ public class LoginRequest {
     this.email = email;
   }
 
-  public LoginRequest password(String password) {
+  public CreateMeRequest password(String password) {
     this.password = password;
     return this;
   }
 
   /**
    * パスワード
-   * 
    * @return password
-   */
+  */
   @ApiModelProperty(required = true, value = "パスワード")
   @NotNull
 
-  @Pattern(regexp = "^[a-zA-Z0-9.?/-]{8,}$")
-  @Size(min = 8)
+@Pattern(regexp = "^[a-zA-Z0-9.?/-]{8,}$") @Size(min = 8) 
   public String getPassword() {
     return password;
   }
@@ -77,21 +96,23 @@ public class LoginRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    LoginRequest loginRequest = (LoginRequest) o;
-    return Objects.equals(this.email, loginRequest.email) &&
-        Objects.equals(this.password, loginRequest.password);
+    CreateMeRequest createMeRequest = (CreateMeRequest) o;
+    return Objects.equals(this.name, createMeRequest.name) &&
+        Objects.equals(this.email, createMeRequest.email) &&
+        Objects.equals(this.password, createMeRequest.password);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(email, password);
+    return Objects.hash(name, email, password);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class LoginRequest {\n");
-
+    sb.append("class CreateMeRequest {\n");
+    
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("}");
@@ -99,7 +120,8 @@ public class LoginRequest {
   }
 
   /**
-   * Convert the given object to string with each line indented by 4 spaces (except the first line).
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
    */
   private String toIndentedString(Object o) {
     if (o == null) {

@@ -1,10 +1,7 @@
 package com.example.onemessageapi.controller;
 
 import javax.validation.Valid;
-
-import com.example.onemessageapi.api.RegisterApi;
 import com.example.onemessageapi.model.entitys.User;
-import com.example.onemessageapi.model.request.CreateMeRequest;
 import com.example.onemessageapi.service.RegisterService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
+import org.openapitools.api.RegisterApi;
+import org.openapitools.model.CreateMeRequest;
 
 @RestController
 public class RegisterController implements RegisterApi {

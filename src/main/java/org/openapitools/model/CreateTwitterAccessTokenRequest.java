@@ -1,4 +1,4 @@
-package com.example.onemessageapi.model.request;
+package org.openapitools.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,9 +13,8 @@ import javax.validation.constraints.*;
  * Twitterのアクセストークン
  */
 @ApiModel(description = "Twitterのアクセストークン")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen",
-    date = "2021-11-18T01:14:22.557617Z[Etc/UTC]")
-public class CreateTwitterAccessTokenRequest {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-12-01T03:05:48.192486Z[Etc/UTC]")
+public class CreateTwitterAccessTokenRequest   {
   @JsonProperty("accessToken")
   private String accessToken;
 
@@ -29,9 +28,8 @@ public class CreateTwitterAccessTokenRequest {
 
   /**
    * Twitterのアクセストークン
-   * 
    * @return accessToken
-   */
+  */
   @ApiModelProperty(required = true, value = "Twitterのアクセストークン")
   @NotNull
 
@@ -51,9 +49,8 @@ public class CreateTwitterAccessTokenRequest {
 
   /**
    * Twitterのアクセス用秘密鍵
-   * 
    * @return secretKey
-   */
+  */
   @ApiModelProperty(value = "Twitterのアクセス用秘密鍵")
 
 
@@ -74,8 +71,7 @@ public class CreateTwitterAccessTokenRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateTwitterAccessTokenRequest createTwitterAccessTokenRequest =
-        (CreateTwitterAccessTokenRequest) o;
+    CreateTwitterAccessTokenRequest createTwitterAccessTokenRequest = (CreateTwitterAccessTokenRequest) o;
     return Objects.equals(this.accessToken, createTwitterAccessTokenRequest.accessToken) &&
         Objects.equals(this.secretKey, createTwitterAccessTokenRequest.secretKey);
   }
@@ -89,7 +85,7 @@ public class CreateTwitterAccessTokenRequest {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateTwitterAccessTokenRequest {\n");
-
+    
     sb.append("    accessToken: ").append(toIndentedString(accessToken)).append("\n");
     sb.append("    secretKey: ").append(toIndentedString(secretKey)).append("\n");
     sb.append("}");
@@ -97,7 +93,8 @@ public class CreateTwitterAccessTokenRequest {
   }
 
   /**
-   * Convert the given object to string with each line indented by 4 spaces (except the first line).
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
    */
   private String toIndentedString(Object o) {
     if (o == null) {
