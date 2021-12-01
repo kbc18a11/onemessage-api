@@ -1,5 +1,6 @@
 package com.example.onemessageapi.service;
 
+import javax.transaction.Transactional;
 import com.example.onemessageapi.model.entitys.TwitterAccount;
 import com.example.onemessageapi.repository.TwitterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,15 @@ public class TwitterService {
         new AccessToken(twitterAccount.getAccessToken(), twitterAccount.getSecretKey()));
 
     return twitter.verifyCredentials();
+  }
+
+  /**
+   * アクセストークンと秘密鍵を削除
+   * 
+   * @param userId
+   */
+  @Transactional
+  public void deleteAccountTokenAndSecretKeyByUserId(String userId) {
+    repository.deleteByUserId(userId);
   }
 }

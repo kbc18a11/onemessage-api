@@ -1,7 +1,7 @@
 package com.example.onemessageapi.service;
 
 import java.util.UUID;
-
+import javax.transaction.Transactional;
 import com.example.onemessageapi.model.entitys.User;
 import com.example.onemessageapi.repository.UserRepository;
 
@@ -22,6 +22,7 @@ public class RegisterService {
    * 
    * @param createMeRequest
    */
+  @Transactional
   public void register(User user) throws Exception {
     // メールアドレスが存在しているか
     if (repository.existsByEmail(user.getEmail())) {

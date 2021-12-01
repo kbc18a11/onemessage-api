@@ -2,8 +2,6 @@ package com.example.onemessageapi.service;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import java.util.Optional;
 import com.example.onemessageapi.model.entitys.TwitterAccount;
 import com.example.onemessageapi.model.entitys.User;
 import com.example.onemessageapi.repository.TwitterRepository;
@@ -13,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
-import twitter4j.auth.AccessToken;
 
 @SpringBootTest
 public class TwitterServiceTest {
@@ -61,5 +58,15 @@ public class TwitterServiceTest {
      * times(1)).setOAuthAccessToken( new AccessToken(twitterAccount.getAccessToken(),
      * twitterAccount.getSecretKey())); verify(twitter, times(1)).verifyCredentials();
      */
+  }
+
+  @Test
+  public void アクセストークンと秘密鍵を削除の検証() {
+    var user = new User();
+    user.setId("tesetId");
+
+    twitterService.deleteAccountTokenAndSecretKeyByUserId(user.getId());
+
+    verify(repository, times(1)).deleteByUserId(user.getId());
   }
 }
