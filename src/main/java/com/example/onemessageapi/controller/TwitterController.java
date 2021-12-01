@@ -42,7 +42,6 @@ public class TwitterController implements TwitterApi {
   @Override
   public ResponseEntity<Void> createTwitterAccessToken(
       @Valid CreateTwitterAccessTokenRequest createTwitterAccessTokenRequest) {
-
     // IDの取得
     var userId = getRequest().map(request -> (String) request.getAttribute("userId", 0)).get();
 
@@ -66,6 +65,9 @@ public class TwitterController implements TwitterApi {
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
 
+  /**
+   * Twitterアカウント情報を取得
+   */
   @Override
   public ResponseEntity<GetTwitterAccountResponse> getTwitterAccount() {
     // IDの取得
@@ -85,5 +87,25 @@ public class TwitterController implements TwitterApi {
 
       throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
     }
+  }
+
+  /**
+   * アクセストークンと秘密鍵を削除
+   */
+  @Override
+  public ResponseEntity<Void> deleteTwitterAccessToken() {
+    // IDの取得
+    var userId = getRequest().map(request -> (String) request.getAttribute("userId", 0)).get();
+
+    try {
+      // アクセストークンと秘密鍵を保存
+      twitterService.deleteAccountTokenAndSecretKeyByUserId(userId);
+    } catch (Exception e) {
+      System.err.println(e);
+
+      throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+    }
+
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 }

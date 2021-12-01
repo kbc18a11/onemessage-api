@@ -17,4 +17,11 @@ public interface TwitterRepository extends JpaRepository<TwitterAccount, Integer
    * @param userId
    */
   Optional<TwitterAccount> findByUserId(String userId);
+
+  /**
+   * ユーザーIDからデータを削除
+   * 
+   * @param userId
+   */
+  void deleteByUserId(String userId);
 }
