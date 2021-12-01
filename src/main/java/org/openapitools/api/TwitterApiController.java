@@ -7,12 +7,12 @@ import java.util.Optional;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-12-01T03:05:48.192486Z[Etc/UTC]")
 @Controller
 @RequestMapping("${openapi.oneMessage.base-path:/api/v1}")
-public class MeApiController implements MeApi {
+public class TwitterApiController implements TwitterApi {
 
     private final NativeWebRequest request;
 
     @org.springframework.beans.factory.annotation.Autowired
-    public MeApiController(NativeWebRequest request) {
+    public TwitterApiController(NativeWebRequest request) {
         this.request = request;
     }
 
