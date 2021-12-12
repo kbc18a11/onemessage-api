@@ -11,8 +11,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.server.ResponseStatusException;
+import twitter4j.TwitterException;
 import org.openapitools.api.TwitterApi;
 import org.openapitools.model.CreateTwitterAccessTokenRequest;
+import org.openapitools.model.GetTwitterAccountFollowersResponse;
 import org.openapitools.model.GetTwitterAccountResponse;
 
 @RestController
@@ -56,13 +58,13 @@ public class TwitterController implements TwitterApi {
 
       // アクセストークンと秘密鍵を保存
       twitterService.saveAccountTokenAndSecretKey(twitterAccount);
+
+      return new ResponseEntity<>(HttpStatus.CREATED);
     } catch (Exception e) {
       System.err.println(e);
 
       throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
     }
-
-    return new ResponseEntity<>(HttpStatus.CREATED);
   }
 
   /**
@@ -90,6 +92,30 @@ public class TwitterController implements TwitterApi {
   }
 
   /**
+   * フォロワー情報の取得
+   */
+  @Override
+  public ResponseEntity<GetTwitterAccountFollowersResponse> getTwitterAccountFollowers(
+      @Valid Integer offset, @Valid Integer limit) {
+    // IDの取得
+    var userId = getRequest().map(request -> (String) request.getAttribute("userId", 0)).get();
+
+    try {
+      var followers = twitterService.getFollowers(userId, offset, limit);
+
+      var response = new GetTwitterAccountFollowersResponse();
+      response.setTotal(followers.size());
+      response.setFollowers(followers);
+
+      return new ResponseEntity<GetTwitterAccountFollowersResponse>(response, HttpStatus.OK);
+    } catch (TwitterException e) {
+      System.err.println(e);
+
+      throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+    }
+  }
+
+  /**
    * アクセストークンと秘密鍵を削除
    */
   @Override
@@ -100,12 +126,12 @@ public class TwitterController implements TwitterApi {
     try {
       // アクセストークンと秘密鍵を保存
       twitterService.deleteAccountTokenAndSecretKeyByUserId(userId);
+
+      return new ResponseEntity<>(HttpStatus.OK);
     } catch (Exception e) {
       System.err.println(e);
 
       throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
     }
-
-    return new ResponseEntity<>(HttpStatus.OK);
   }
 }

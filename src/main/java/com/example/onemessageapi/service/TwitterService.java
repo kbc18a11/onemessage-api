@@ -1,8 +1,11 @@
 package com.example.onemessageapi.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import javax.transaction.Transactional;
 import com.example.onemessageapi.model.entitys.TwitterAccount;
 import com.example.onemessageapi.repository.TwitterRepository;
+import org.openapitools.model.GetTwitterAccountFollowersResponseFollowers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import twitter4j.Twitter;
@@ -53,5 +56,55 @@ public class TwitterService {
   @Transactional
   public void deleteAccountTokenAndSecretKeyByUserId(String userId) {
     repository.deleteByUserId(userId);
+  }
+
+  /**
+   * フォロワー一覧取得
+   * 
+   * @param userId ユーザーID
+   * @param offset 取得位置
+   * @param limit 取得数
+   * @return
+   * @throws TwitterException
+   */
+  public ArrayList<GetTwitterAccountFollowersResponseFollowers> getFollowers(String userId,
+      int offset,
+      int limit)
+      throws TwitterException {
+    // アクセストークンと秘密鍵を取得
+    var twitterAccount = repository.findByUserId(userId).get();
+
+    // アクセストークンと秘密鍵をセット
+    Twitter twitter = TwitterFactory.getSingleton();
+    twitter.setOAuthAccessToken(
+        new AccessToken(
+            twitterAccount.getAccessToken(),
+            twitterAccount.getSecretKey()));
+
+    // フォロワーのIDを取得
+    var followersIds = twitter.getFollowersIDs(twitter.verifyCredentials().getScreenName(), -1);
+
+    var followers = new ArrayList<GetTwitterAccountFollowersResponseFollowers>();
+
+    for (int i = offset - 1; i < limit; i++) {
+      if (followersIds.getIDs().length < limit)
+        // フォロワーより取得数が 多い場合
+        break;
+
+      long id = followersIds.getIDs()[i];
+
+      // フォロワーの情報を取得
+      var follower = twitter.showUser(id);
+
+      var responseFollowerData = new GetTwitterAccountFollowersResponseFollowers();
+
+      responseFollowerData.setId(id);
+      responseFollowerData.setScreenName(follower.getScreenName());
+      responseFollowerData.setAccountUrl("https://twitter.com/" + follower.getScreenName());
+
+      followers.add(responseFollowerData);
+    }
+
+    return followers;
   }
 }

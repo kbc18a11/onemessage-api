@@ -7,12 +7,12 @@ import java.util.Optional;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-12-12T07:44:53.201564Z[Etc/UTC]")
 @Controller
 @RequestMapping("${openapi.oneMessage.base-path:/api/v1}")
-public class LoginApiController implements LoginApi {
+public class DmApiController implements DmApi {
 
     private final NativeWebRequest request;
 
     @org.springframework.beans.factory.annotation.Autowired
-    public LoginApiController(NativeWebRequest request) {
+    public DmApiController(NativeWebRequest request) {
         this.request = request;
     }
 
