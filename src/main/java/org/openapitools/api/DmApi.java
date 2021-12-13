@@ -5,7 +5,7 @@
  */
 package org.openapitools.api;
 
-import org.openapitools.model.GetMeResponse;
+import org.openapitools.model.PostDmRequest;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -22,46 +22,35 @@ import java.util.Map;
 import java.util.Optional;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-12-12T07:44:53.201564Z[Etc/UTC]")
 @Validated
-@Api(value = "me", description = "the me API")
-public interface MeApi {
+@Api(value = "dm", description = "the dm API")
+public interface DmApi {
 
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
     }
 
     /**
-     * GET /me : ユーザー情報取得
-     * ユーザー情報を習得
+     * POST /dm : dm送信
+     * dmを送信
      *
+     * @param postDmRequest  (required)
      * @return OK (status code 200)
      *         or Bad Request (status code 400)
      *         or Unauthorized (status code 401)
      *         or Internal Server Error (status code 500)
      */
-    @ApiOperation(value = "ユーザー情報取得", nickname = "getMe", notes = "ユーザー情報を習得", response = GetMeResponse.class, authorizations = {
-        
-        @Authorization(value = "Authorization")
-         }, tags={ "user", })
+    @ApiOperation(value = "dm送信", nickname = "postDm", notes = "dmを送信", tags={ "dm", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "OK", response = GetMeResponse.class),
+        @ApiResponse(code = 200, message = "OK"),
         @ApiResponse(code = 400, message = "Bad Request"),
         @ApiResponse(code = 401, message = "Unauthorized"),
         @ApiResponse(code = 500, message = "Internal Server Error") })
     @RequestMapping(
-        method = RequestMethod.GET,
-        value = "/me",
-        produces = { "application/json" }
+        method = RequestMethod.POST,
+        value = "/dm",
+        consumes = { "application/json" }
     )
-    default ResponseEntity<GetMeResponse> getMe() {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"name\" : \"name\", \"id\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"email\" : \"email\" }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-            }
-        });
+    default ResponseEntity<Void> postDm(@ApiParam(value = "", required = true) @Valid @RequestBody PostDmRequest postDmRequest) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

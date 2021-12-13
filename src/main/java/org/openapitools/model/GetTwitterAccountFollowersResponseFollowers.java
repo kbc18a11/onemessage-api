@@ -10,21 +10,42 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * Twitterのアカウント情報
+ * フォロワー情報
  */
-@ApiModel(description = "Twitterのアカウント情報")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-12-12T07:44:53.201564Z[Etc/UTC]")
-public class GetTwitterAccountResponse   {
+@ApiModel(description = "フォロワー情報")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-12-12T08:58:43.098794Z[Etc/UTC]")
+public class GetTwitterAccountFollowersResponseFollowers   {
+  @JsonProperty("id")
+  private Long id;
+
   @JsonProperty("screenName")
   private String screenName;
-
-  @JsonProperty("profileImageURL")
-  private String profileImageURL;
 
   @JsonProperty("accountUrl")
   private String accountUrl;
 
-  public GetTwitterAccountResponse screenName(String screenName) {
+  public GetTwitterAccountFollowersResponseFollowers id(Long id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * ユーザーID
+   * @return id
+  */
+  @ApiModelProperty(required = true, value = "ユーザーID")
+  @NotNull
+
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public GetTwitterAccountFollowersResponseFollowers screenName(String screenName) {
     this.screenName = screenName;
     return this;
   }
@@ -45,28 +66,7 @@ public class GetTwitterAccountResponse   {
     this.screenName = screenName;
   }
 
-  public GetTwitterAccountResponse profileImageURL(String profileImageURL) {
-    this.profileImageURL = profileImageURL;
-    return this;
-  }
-
-  /**
-   * アカウントアイコン画像
-   * @return profileImageURL
-  */
-  @ApiModelProperty(required = true, value = "アカウントアイコン画像")
-  @NotNull
-
-
-  public String getProfileImageURL() {
-    return profileImageURL;
-  }
-
-  public void setProfileImageURL(String profileImageURL) {
-    this.profileImageURL = profileImageURL;
-  }
-
-  public GetTwitterAccountResponse accountUrl(String accountUrl) {
+  public GetTwitterAccountFollowersResponseFollowers accountUrl(String accountUrl) {
     this.accountUrl = accountUrl;
     return this;
   }
@@ -96,24 +96,24 @@ public class GetTwitterAccountResponse   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GetTwitterAccountResponse getTwitterAccountResponse = (GetTwitterAccountResponse) o;
-    return Objects.equals(this.screenName, getTwitterAccountResponse.screenName) &&
-        Objects.equals(this.profileImageURL, getTwitterAccountResponse.profileImageURL) &&
-        Objects.equals(this.accountUrl, getTwitterAccountResponse.accountUrl);
+    GetTwitterAccountFollowersResponseFollowers getTwitterAccountFollowersResponseFollowers = (GetTwitterAccountFollowersResponseFollowers) o;
+    return Objects.equals(this.id, getTwitterAccountFollowersResponseFollowers.id) &&
+        Objects.equals(this.screenName, getTwitterAccountFollowersResponseFollowers.screenName) &&
+        Objects.equals(this.accountUrl, getTwitterAccountFollowersResponseFollowers.accountUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(screenName, profileImageURL, accountUrl);
+    return Objects.hash(id, screenName, accountUrl);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GetTwitterAccountResponse {\n");
+    sb.append("class GetTwitterAccountFollowersResponseFollowers {\n");
     
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    screenName: ").append(toIndentedString(screenName)).append("\n");
-    sb.append("    profileImageURL: ").append(toIndentedString(profileImageURL)).append("\n");
     sb.append("    accountUrl: ").append(toIndentedString(accountUrl)).append("\n");
     sb.append("}");
     return sb.toString();

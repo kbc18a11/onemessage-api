@@ -6,6 +6,7 @@
 package org.openapitools.api;
 
 import org.openapitools.model.CreateTwitterAccessTokenRequest;
+import org.openapitools.model.GetTwitterAccountFollowersResponse;
 import org.openapitools.model.GetTwitterAccountResponse;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-12-01T03:05:48.192486Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-12-12T07:44:53.201564Z[Etc/UTC]")
 @Validated
 @Api(value = "twitter", description = "the twitter API")
 public interface TwitterApi {
@@ -89,15 +90,15 @@ public interface TwitterApi {
 
 
     /**
-     * GET /twitter/account : ユーザー情報のTwitter情報を取得
-     * ユーザー情報のTwitter情報を取得
+     * GET /twitter/account : ユーザーのTwitter情報を取得
+     * ユーザーのTwitter情報を取得
      *
      * @return OK (status code 200)
      *         or Bad Request (status code 400)
      *         or Unauthorized (status code 401)
      *         or Internal Server Error (status code 500)
      */
-    @ApiOperation(value = "ユーザー情報のTwitter情報を取得", nickname = "getTwitterAccount", notes = "ユーザー情報のTwitter情報を取得", response = GetTwitterAccountResponse.class, authorizations = {
+    @ApiOperation(value = "ユーザーのTwitter情報を取得", nickname = "getTwitterAccount", notes = "ユーザーのTwitter情報を取得", response = GetTwitterAccountResponse.class, authorizations = {
         
         @Authorization(value = "Authorization")
          }, tags={ "twitter", })
@@ -116,6 +117,46 @@ public interface TwitterApi {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
                     String exampleString = "{ \"screenName\" : \"screenName\", \"profileImageURL\" : \"profileImageURL\", \"accountUrl\" : \"accountUrl\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
+     * GET /twitter/account/followers : Twitterアカウントのフォロワー情報の取得
+     * ユーザーのTwitterアカウントのフォロワー情報の取得
+     *
+     * @param offset フォロワーの取得開始位置 指定されない場合は、0から開始される  (optional)
+     * @param limit フォロワーの取得数 指定されない場合は、最大量まで取得される  (optional)
+     * @return OK (status code 200)
+     *         or Bad Request (status code 400)
+     *         or Unauthorized (status code 401)
+     *         or Internal Server Error (status code 500)
+     */
+    @ApiOperation(value = "Twitterアカウントのフォロワー情報の取得", nickname = "getTwitterAccountFollowers", notes = "ユーザーのTwitterアカウントのフォロワー情報の取得", response = GetTwitterAccountFollowersResponse.class, authorizations = {
+        
+        @Authorization(value = "Authorization")
+         }, tags={ "twitter", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = GetTwitterAccountFollowersResponse.class),
+        @ApiResponse(code = 400, message = "Bad Request"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 500, message = "Internal Server Error") })
+    @RequestMapping(
+        method = RequestMethod.GET,
+        value = "/twitter/account/followers",
+        produces = { "application/json" }
+    )
+    default ResponseEntity<GetTwitterAccountFollowersResponse> getTwitterAccountFollowers(@ApiParam(value = "フォロワーの取得開始位置 指定されない場合は、0から開始される ") @Valid @RequestParam(value = "offset", required = false) Integer offset,@ApiParam(value = "フォロワーの取得数 指定されない場合は、最大量まで取得される ") @Valid @RequestParam(value = "limit", required = false) Integer limit) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"total\" : 0, \"followers\" : [ { \"id\" : 6, \"screenName\" : \"screenName\", \"accountUrl\" : \"accountUrl\" }, { \"id\" : 6, \"screenName\" : \"screenName\", \"accountUrl\" : \"accountUrl\" } ] }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

@@ -20,7 +20,7 @@ public class JwtAuthenticationSuccessHandler implements AuthenticationSuccessHan
 
   private Algorithm algorithm;
 
-  private static final Long EXPIRATION_TIME = TimeUnit.HOURS.toMillis(1);
+  private static final Long EXPIRATION_TIME = TimeUnit.HOURS.toMillis(2);
 
   public JwtAuthenticationSuccessHandler(String secretKey) {
     Objects.requireNonNull(secretKey, "secret key must be not null");
