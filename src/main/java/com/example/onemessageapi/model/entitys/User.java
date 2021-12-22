@@ -2,7 +2,7 @@ package com.example.onemessageapi.model.entitys;
 
 import java.util.Date;
 import lombok.Data;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -30,6 +30,10 @@ public class User {
   // ユーザアカウントがロックされているかの設定
   @Column(columnDefinition = "boolean default false", nullable = false)
   private boolean accountLocked;
+
+  // usersテーブルに対する外部キー
+  @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+  private TwitterAccount twitterAccounts;
 
   // 作成日時
   @Column(nullable = false)

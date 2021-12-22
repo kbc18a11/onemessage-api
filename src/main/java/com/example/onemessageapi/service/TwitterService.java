@@ -1,7 +1,6 @@
 package com.example.onemessageapi.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import javax.transaction.Transactional;
 import com.example.onemessageapi.model.entitys.TwitterAccount;
 import com.example.onemessageapi.repository.TwitterRepository;
@@ -67,7 +66,8 @@ public class TwitterService {
    * @return
    * @throws TwitterException
    */
-  public ArrayList<GetTwitterAccountFollowersResponseFollowers> getFollowers(String userId,
+  public ArrayList<GetTwitterAccountFollowersResponseFollowers> getFollowers(
+      String userId,
       int offset,
       int limit)
       throws TwitterException {
@@ -106,5 +106,26 @@ public class TwitterService {
     }
 
     return followers;
+  }
+
+  /**
+   * DMを送信
+   * 
+   * @param twitterAccount
+   * @param message
+   * @param sendIds
+   * @throws TwitterException
+   */
+  public void postDm(TwitterAccount twitterAccount, String message, long[] sendIds) throws TwitterException {
+    // アクセストークンと秘密鍵をセット
+    Twitter twitter = TwitterFactory.getSingleton();
+    twitter.setOAuthAccessToken(
+        new AccessToken(
+            twitterAccount.getAccessToken(),
+            twitterAccount.getSecretKey()));
+
+    for (long sendId : sendIds) {
+      twitter.sendDirectMessage(sendId, message);
+    }
   }
 }
