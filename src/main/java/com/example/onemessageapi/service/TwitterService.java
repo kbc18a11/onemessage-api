@@ -24,6 +24,7 @@ public class TwitterService {
    * 
    * @param account
    */
+  @Transactional
   public void saveAccountTokenAndSecretKey(TwitterAccount account) {
     repository.save(account);
   }
