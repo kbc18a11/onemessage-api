@@ -1,7 +1,6 @@
 package com.example.onemessageapi.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import javax.transaction.Transactional;
 import com.example.onemessageapi.model.entitys.TwitterAccount;
 import com.example.onemessageapi.repository.TwitterRepository;
