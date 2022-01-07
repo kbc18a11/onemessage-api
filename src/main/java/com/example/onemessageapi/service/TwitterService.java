@@ -1,6 +1,7 @@
 package com.example.onemessageapi.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.transaction.Transactional;
 import com.example.onemessageapi.model.entitys.TwitterAccount;
 import com.example.onemessageapi.repository.TwitterRepository;
@@ -87,11 +88,11 @@ public class TwitterService {
 
     var followers = new ArrayList<GetTwitterAccountFollowersResponseFollowers>();
 
-    for (int i = offset - 1; i < limit; i++) {
-      if (followersIds.getIDs().length < limit)
-        // フォロワーより取得数が 多い場合
-        break;
+    if (followersIds.getIDs().length < limit)
+      // フォロワーより取得数が多い場合
+      limit = followersIds.getIDs().length;
 
+    for (int i = offset; i < limit; i++) {
       long id = followersIds.getIDs()[i];
 
       // フォロワーの情報を取得
