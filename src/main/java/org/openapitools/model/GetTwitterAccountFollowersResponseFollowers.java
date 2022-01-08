@@ -13,10 +13,10 @@ import javax.validation.constraints.*;
  * フォロワー情報
  */
 @ApiModel(description = "フォロワー情報")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-12-12T08:58:43.098794Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-08T13:15:06.648144Z[Etc/UTC]")
 public class GetTwitterAccountFollowersResponseFollowers   {
   @JsonProperty("id")
-  private Long id;
+  private String id;
 
   @JsonProperty("screenName")
   private String screenName;
@@ -24,7 +24,7 @@ public class GetTwitterAccountFollowersResponseFollowers   {
   @JsonProperty("accountUrl")
   private String accountUrl;
 
-  public GetTwitterAccountFollowersResponseFollowers id(Long id) {
+  public GetTwitterAccountFollowersResponseFollowers id(String id) {
     this.id = id;
     return this;
   }
@@ -37,11 +37,11 @@ public class GetTwitterAccountFollowersResponseFollowers   {
   @NotNull
 
 
-  public Long getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(String id) {
     this.id = id;
   }
 

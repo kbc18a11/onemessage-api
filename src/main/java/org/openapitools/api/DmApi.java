@@ -20,7 +20,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-12-12T07:44:53.201564Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-08T13:15:06.648144Z[Etc/UTC]")
 @Validated
 @Api(value = "dm", description = "the dm API")
 public interface DmApi {
@@ -39,7 +39,10 @@ public interface DmApi {
      *         or Unauthorized (status code 401)
      *         or Internal Server Error (status code 500)
      */
-    @ApiOperation(value = "dm送信", nickname = "postDm", notes = "dmを送信", tags={ "dm", })
+    @ApiOperation(value = "dm送信", nickname = "postDm", notes = "dmを送信", authorizations = {
+        
+        @Authorization(value = "Authorization")
+         }, tags={ "dm", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK"),
         @ApiResponse(code = 400, message = "Bad Request"),

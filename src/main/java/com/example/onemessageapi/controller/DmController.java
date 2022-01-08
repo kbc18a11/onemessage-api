@@ -1,11 +1,9 @@
 package com.example.onemessageapi.controller;
 
 import java.util.Optional;
-import java.util.stream.Collectors;
 import javax.validation.Valid;
 import com.example.onemessageapi.service.TwitterService;
 import com.example.onemessageapi.service.UserService;
-import org.apache.tomcat.jni.Address;
 import org.openapitools.api.DmApi;
 import org.openapitools.model.PostDmRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +16,7 @@ import twitter4j.TwitterException;
 
 @RestController
 public class DmController implements DmApi {
+
   @Autowired
   private final NativeWebRequest request;
 
@@ -46,7 +45,6 @@ public class DmController implements DmApi {
         .getLoginUser(getRequest().map(request -> (String) request.getAttribute("userId", 0)).get());
 
     postDmRequest.getSendingAddresses().forEach(sendingAddresse -> {
-      System.err.println("ｔんぽ");
       switch (sendingAddresse.getPlatformType()) {
         case TWITTER:
           try {

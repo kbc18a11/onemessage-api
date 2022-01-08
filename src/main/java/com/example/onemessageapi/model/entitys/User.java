@@ -2,6 +2,7 @@ package com.example.onemessageapi.model.entitys;
 
 import java.util.Date;
 import lombok.Data;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -32,8 +33,7 @@ public class User {
   private boolean accountLocked;
 
   // twitter_accountsテーブルに対する外部キー
-  @OneToOne
-  @JoinColumn
+  @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
   private TwitterAccount twitterAccounts;
 
   // 作成日時

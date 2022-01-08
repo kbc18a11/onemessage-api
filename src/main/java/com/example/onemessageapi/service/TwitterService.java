@@ -87,11 +87,11 @@ public class TwitterService {
 
     var followers = new ArrayList<GetTwitterAccountFollowersResponseFollowers>();
 
-    for (int i = offset - 1; i < limit; i++) {
-      if (followersIds.getIDs().length < limit)
-        // フォロワーより取得数が 多い場合
-        break;
+    if (followersIds.getIDs().length < limit)
+      // フォロワーより取得数が多い場合
+      limit = followersIds.getIDs().length;
 
+    for (int i = offset; i < limit; i++) {
       long id = followersIds.getIDs()[i];
 
       // フォロワーの情報を取得
@@ -99,7 +99,7 @@ public class TwitterService {
 
       var responseFollowerData = new GetTwitterAccountFollowersResponseFollowers();
 
-      responseFollowerData.setId(id);
+      responseFollowerData.setId(Long.toString(id));
       responseFollowerData.setScreenName(follower.getScreenName());
       responseFollowerData.setAccountUrl("https://twitter.com/" + follower.getScreenName());
 

@@ -14,7 +14,7 @@ import javax.validation.constraints.*;
  * ユーザー情報
  */
 @ApiModel(description = "ユーザー情報")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-12-12T07:44:53.201564Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-08T13:15:06.648144Z[Etc/UTC]")
 public class GetMeResponse   {
   @JsonProperty("id")
   private UUID id;
