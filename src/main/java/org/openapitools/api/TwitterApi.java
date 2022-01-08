@@ -22,7 +22,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-12-12T07:44:53.201564Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-08T13:15:06.648144Z[Etc/UTC]")
 @Validated
 @Api(value = "twitter", description = "the twitter API")
 public interface TwitterApi {
@@ -156,7 +156,7 @@ public interface TwitterApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"total\" : 0, \"followers\" : [ { \"id\" : 6, \"screenName\" : \"screenName\", \"accountUrl\" : \"accountUrl\" }, { \"id\" : 6, \"screenName\" : \"screenName\", \"accountUrl\" : \"accountUrl\" } ] }";
+                    String exampleString = "{ \"total\" : 0, \"followers\" : [ { \"id\" : \"id\", \"screenName\" : \"screenName\", \"accountUrl\" : \"accountUrl\" }, { \"id\" : \"id\", \"screenName\" : \"screenName\", \"accountUrl\" : \"accountUrl\" } ] }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

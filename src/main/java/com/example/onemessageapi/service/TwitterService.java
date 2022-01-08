@@ -99,7 +99,7 @@ public class TwitterService {
 
       var responseFollowerData = new GetTwitterAccountFollowersResponseFollowers();
 
-      responseFollowerData.setId(id);
+      responseFollowerData.setId(Long.toString(id));
       responseFollowerData.setScreenName(follower.getScreenName());
       responseFollowerData.setAccountUrl("https://twitter.com/" + follower.getScreenName());
 
