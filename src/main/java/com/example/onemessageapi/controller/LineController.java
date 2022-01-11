@@ -48,6 +48,8 @@ public class LineController implements LineApi {
       }
 
       var lineAccount = user.getLineAccount();
+
+      // 子であるLINEアカウント情報を削除するため、nullを代入
       user.setLineAccount(null);
 
       lineService.deleteAccountInfo(lineAccount);

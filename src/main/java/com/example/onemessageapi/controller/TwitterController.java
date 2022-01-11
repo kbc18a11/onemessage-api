@@ -120,12 +120,17 @@ public class TwitterController implements TwitterApi {
    */
   @Override
   public ResponseEntity<Void> deleteTwitterAccessToken() {
-    // IDの取得
-    var userId = getRequest().map(request -> (String) request.getAttribute("userId", 0)).get();
+    // ユーザー情報の取得
+    var user = userService
+        .getLoginUser(getRequest().map(request -> (String) request.getAttribute("userId", 0)).get());
 
     try {
-      // アクセストークンと秘密鍵を保存
-      twitterService.deleteAccountTokenAndSecretKeyByUserId(userId);
+      var account = user.getTwitterAccounts();
+
+      // 子であるtwitterアカウント情報を削除するため、nullを代入
+      user.setTwitterAccounts(null);
+
+      twitterService.deletedeleteAccountInfo(account);
 
       return new ResponseEntity<>(HttpStatus.OK);
     } catch (Exception e) {
