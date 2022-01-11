@@ -1,43 +1,38 @@
 package com.example.onemessageapi.model.entitys;
 
 import java.util.Date;
-import lombok.Data;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "lineAccounts")
+public class LineAccount {
   @Id
-  private String id;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
 
-  @Column(length = 32, nullable = false)
-  private String name;
+  // usersテーブルに対する外部キー
+  @OneToOne
+  @JoinColumn(nullable = false)
+  private User user;
 
+  // チャンネルトークン
   @Column(length = 255, unique = true, nullable = false)
-  private String email;
+  private String channelToken;
 
-  @Column(length = 255, nullable = false)
-  private String password;
-
-  // ユーザアカウントがロックされているかの設定
-  @Column(columnDefinition = "boolean default false", nullable = false)
-  private boolean accountLocked;
-
-  // twitter_accountsテーブルに対する外部キー
-  @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-  private TwitterAccount twitterAccounts;
-
-  // line_accountsテーブルに対する外部キー
-  @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-  private LineAccount lineAccounts;
+  // 秘密鍵
+  @Column(length = 255, unique = true, nullable = false)
+  private String channelSecretKey;
 
   // 作成日時
   @Column(nullable = false)

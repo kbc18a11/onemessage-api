@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  * Twitterのアクセストークン
  */
 @ApiModel(description = "Twitterのアクセストークン")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-08T13:15:06.648144Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-11T14:32:38.605032Z[Etc/UTC]")
 public class CreateTwitterAccessTokenRequest   {
   @JsonProperty("accessToken")
   private String accessToken;
@@ -51,7 +51,8 @@ public class CreateTwitterAccessTokenRequest   {
    * Twitterのアクセス用秘密鍵
    * @return secretKey
   */
-  @ApiModelProperty(value = "Twitterのアクセス用秘密鍵")
+  @ApiModelProperty(required = true, value = "Twitterのアクセス用秘密鍵")
+  @NotNull
 
 
   public String getSecretKey() {

@@ -17,7 +17,7 @@ import javax.validation.constraints.*;
  * プラットフォームごとの送信先一覧
  */
 @ApiModel(description = "プラットフォームごとの送信先一覧")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-08T13:15:06.648144Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-11T14:32:38.605032Z[Etc/UTC]")
 public class PostDmRequestSendingAddresses   {
   /**
    * プラットフォームの種類

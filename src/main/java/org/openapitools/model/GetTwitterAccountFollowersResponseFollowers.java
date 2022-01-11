@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  * フォロワー情報
  */
 @ApiModel(description = "フォロワー情報")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-08T13:15:06.648144Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-11T14:32:38.605032Z[Etc/UTC]")
 public class GetTwitterAccountFollowersResponseFollowers   {
   @JsonProperty("id")
   private String id;

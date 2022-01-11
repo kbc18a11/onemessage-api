@@ -10,21 +10,18 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * Twitterのアカウント情報
+ * LINEアカウント情報
  */
-@ApiModel(description = "Twitterのアカウント情報")
+@ApiModel(description = "LINEアカウント情報")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-11T14:32:38.605032Z[Etc/UTC]")
-public class GetTwitterAccountResponse   {
+public class GetLineAccountResponse   {
   @JsonProperty("screenName")
   private String screenName;
 
   @JsonProperty("profileImageURL")
   private String profileImageURL;
 
-  @JsonProperty("accountUrl")
-  private String accountUrl;
-
-  public GetTwitterAccountResponse screenName(String screenName) {
+  public GetLineAccountResponse screenName(String screenName) {
     this.screenName = screenName;
     return this;
   }
@@ -45,7 +42,7 @@ public class GetTwitterAccountResponse   {
     this.screenName = screenName;
   }
 
-  public GetTwitterAccountResponse profileImageURL(String profileImageURL) {
+  public GetLineAccountResponse profileImageURL(String profileImageURL) {
     this.profileImageURL = profileImageURL;
     return this;
   }
@@ -66,27 +63,6 @@ public class GetTwitterAccountResponse   {
     this.profileImageURL = profileImageURL;
   }
 
-  public GetTwitterAccountResponse accountUrl(String accountUrl) {
-    this.accountUrl = accountUrl;
-    return this;
-  }
-
-  /**
-   * アカウントページのURL
-   * @return accountUrl
-  */
-  @ApiModelProperty(required = true, value = "アカウントページのURL")
-  @NotNull
-
-
-  public String getAccountUrl() {
-    return accountUrl;
-  }
-
-  public void setAccountUrl(String accountUrl) {
-    this.accountUrl = accountUrl;
-  }
-
 
   @Override
   public boolean equals(Object o) {
@@ -96,25 +72,23 @@ public class GetTwitterAccountResponse   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GetTwitterAccountResponse getTwitterAccountResponse = (GetTwitterAccountResponse) o;
-    return Objects.equals(this.screenName, getTwitterAccountResponse.screenName) &&
-        Objects.equals(this.profileImageURL, getTwitterAccountResponse.profileImageURL) &&
-        Objects.equals(this.accountUrl, getTwitterAccountResponse.accountUrl);
+    GetLineAccountResponse getLineAccountResponse = (GetLineAccountResponse) o;
+    return Objects.equals(this.screenName, getLineAccountResponse.screenName) &&
+        Objects.equals(this.profileImageURL, getLineAccountResponse.profileImageURL);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(screenName, profileImageURL, accountUrl);
+    return Objects.hash(screenName, profileImageURL);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GetTwitterAccountResponse {\n");
+    sb.append("class GetLineAccountResponse {\n");
     
     sb.append("    screenName: ").append(toIndentedString(screenName)).append("\n");
     sb.append("    profileImageURL: ").append(toIndentedString(profileImageURL)).append("\n");
-    sb.append("    accountUrl: ").append(toIndentedString(accountUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }
