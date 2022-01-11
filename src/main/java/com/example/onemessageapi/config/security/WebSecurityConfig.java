@@ -22,9 +22,6 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.GenericFilterBean;
 
 @Configuration
@@ -47,6 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .mvcMatchers("/user/**").hasRole("UNLOCKEDUSER")
         .mvcMatchers("/me").hasRole("UNLOCKEDUSER")
         .mvcMatchers("/twitter/**").hasRole("UNLOCKEDUSER")
+        .mvcMatchers("/line/**").hasRole("UNLOCKEDUSER")
         .mvcMatchers("/dm").hasRole("UNLOCKEDUSER")
         .and()
         // EXCEPTION
