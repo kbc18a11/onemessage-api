@@ -46,6 +46,14 @@ public class LineService {
     return lineBotInfo;
   }
 
+  /**
+   * LINEBOT情報の登録
+   * 
+   * @param channelToken
+   * @param user
+   * @return
+   * @throws Exception
+   */
   public LineBotInfo createAccountInfo(String channelToken, User user) throws Exception {
     var lineBotInfo = getBotInfo(channelToken);
     if (lineBotInfo == null)
@@ -62,7 +70,7 @@ public class LineService {
   }
 
   /**
-   * アクセストークンと秘密鍵を削除
+   * LINEBOT情報の削除
    * 
    * @param userId
    */

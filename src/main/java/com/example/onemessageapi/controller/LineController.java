@@ -38,6 +38,9 @@ public class LineController implements LineApi {
     return Optional.ofNullable(request);
   }
 
+  /**
+   * LINEBOT情報の登録
+   */
   @Override
   public ResponseEntity<CreateLineAccountResponse> createLineAccount(
       @Valid CreateLineAccountRequest createLineAccountRequest) {
@@ -60,6 +63,9 @@ public class LineController implements LineApi {
     }
   }
 
+  /**
+   * LINEBOT情報の取得
+   */
   @Override
   public ResponseEntity<GetLineAccountResponse> getLineAccount() {
     User user;
@@ -90,7 +96,7 @@ public class LineController implements LineApi {
   }
 
   /**
-   * アカウント情報を削除
+   * LINEBOT情報を削除
    */
   @Override
   public ResponseEntity<Void> deleteLineAccount() {
@@ -105,7 +111,7 @@ public class LineController implements LineApi {
 
       var lineAccount = user.getLineAccount();
 
-      // 子であるLINEアカウント情報を削除するため、nullを代入
+      // 子であるLINEBOT情報を削除するため、nullを代入
       user.setLineAccount(null);
 
       lineService.deleteAccountInfo(lineAccount);
