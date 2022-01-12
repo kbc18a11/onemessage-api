@@ -1,19 +1,24 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+
+
+import java.util.*;
 
 /**
  * Twitterのアクセストークン
  */
 @ApiModel(description = "Twitterのアクセストークン")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-08T13:15:06.648144Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-12T14:17:29.140063Z[Etc/UTC]")
 public class CreateTwitterAccessTokenRequest   {
   @JsonProperty("accessToken")
   private String accessToken;
@@ -51,7 +56,8 @@ public class CreateTwitterAccessTokenRequest   {
    * Twitterのアクセス用秘密鍵
    * @return secretKey
   */
-  @ApiModelProperty(value = "Twitterのアクセス用秘密鍵")
+  @ApiModelProperty(required = true, value = "Twitterのアクセス用秘密鍵")
+  @NotNull
 
 
   public String getSecretKey() {

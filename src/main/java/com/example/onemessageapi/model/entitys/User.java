@@ -6,7 +6,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -33,8 +32,12 @@ public class User {
   private boolean accountLocked;
 
   // twitter_accountsテーブルに対する外部キー
-  @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+  @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
   private TwitterAccount twitterAccounts;
+
+  // line_accountsテーブルに対する外部キー
+  @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+  private LineAccount lineAccount;
 
   // 作成日時
   @Column(nullable = false)

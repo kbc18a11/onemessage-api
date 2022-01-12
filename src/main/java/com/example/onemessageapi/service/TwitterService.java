@@ -54,8 +54,8 @@ public class TwitterService {
    * @param userId
    */
   @Transactional
-  public void deleteAccountTokenAndSecretKeyByUserId(String userId) {
-    repository.deleteByUserId(userId);
+  public void deletedeleteAccountInfo(TwitterAccount account) {
+    repository.deleteById(account.getId());
   }
 
   /**

@@ -16,8 +16,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "twitterAccounts")
-public class TwitterAccount {
+@Table(name = "lineAccounts")
+public class LineAccount {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
@@ -27,13 +27,9 @@ public class TwitterAccount {
   @JoinColumn(nullable = false)
   private User user;
 
-  // アクセストークン
+  // チャンネルトークン
   @Column(length = 255, unique = true, nullable = false)
-  private String accessToken;
-
-  // 秘密鍵
-  @Column(length = 255, unique = true, nullable = false)
-  private String secretKey;
+  private String channelToken;
 
   // 作成日時
   @Column(nullable = false)

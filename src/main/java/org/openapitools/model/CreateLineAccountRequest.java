@@ -15,33 +15,33 @@ import javax.validation.constraints.*;
 import java.util.*;
 
 /**
- * 送信先のユーザー情報
+ * LINEアカウント登録情報
  */
-@ApiModel(description = "送信先のユーザー情報")
+@ApiModel(description = "LINEアカウント登録情報")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-12T14:17:29.140063Z[Etc/UTC]")
-public class PostDmRequestAddresses   {
-  @JsonProperty("id")
-  private String id;
+public class CreateLineAccountRequest   {
+  @JsonProperty("channelToken")
+  private String channelToken;
 
-  public PostDmRequestAddresses id(String id) {
-    this.id = id;
+  public CreateLineAccountRequest channelToken(String channelToken) {
+    this.channelToken = channelToken;
     return this;
   }
 
   /**
-   * 送信先のユーザーID
-   * @return id
+   * LINEのチャンネルトークン
+   * @return channelToken
   */
-  @ApiModelProperty(required = true, value = "送信先のユーザーID")
+  @ApiModelProperty(required = true, value = "LINEのチャンネルトークン")
   @NotNull
 
 
-  public String getId() {
-    return id;
+  public String getChannelToken() {
+    return channelToken;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setChannelToken(String channelToken) {
+    this.channelToken = channelToken;
   }
 
 
@@ -53,21 +53,21 @@ public class PostDmRequestAddresses   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PostDmRequestAddresses postDmRequestAddresses = (PostDmRequestAddresses) o;
-    return Objects.equals(this.id, postDmRequestAddresses.id);
+    CreateLineAccountRequest createLineAccountRequest = (CreateLineAccountRequest) o;
+    return Objects.equals(this.channelToken, createLineAccountRequest.channelToken);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(channelToken);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PostDmRequestAddresses {\n");
+    sb.append("class CreateLineAccountRequest {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    channelToken: ").append(toIndentedString(channelToken)).append("\n");
     sb.append("}");
     return sb.toString();
   }

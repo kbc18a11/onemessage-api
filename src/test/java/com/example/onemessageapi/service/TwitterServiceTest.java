@@ -44,29 +44,30 @@ public class TwitterServiceTest {
     /*
      * var user = new User(); user.setId("tesetId");
      * 
-     * var twitterAccount = new TwitterAccount(); twitterAccount.setAccessToken("testToken");
-     * twitterAccount.setSecretKey("testSecretKey"); twitterAccount.setUser(user);
+     * var twitterAccount = new TwitterAccount(); twitterAccount.setAccessToken("testToken"); twitterAccount.setSecretKey("testSecretKey"); twitterAccount.setUser(user);
      * 
-     * // ユーザーIDが一致するデータを検索する処理をモック化
-     * when(repository.findByUserId(user.getId())).thenReturn(Optional.ofNullable(twitterAccount));
+     * // ユーザーIDが一致するデータを検索する処理をモック化 when(repository.findByUserId(user.getId())).thenReturn(Optional.ofNullable(twitterAccount));
      * 
      * // Twitterアカウント情報取得処理をモック化 when(twitter.verifyCredentials()).thenReturn(null);
      * 
      * twitterService.getAccountFindByUserId(user.getId());
      * 
-     * verify(repository, times(1)).findByUserId(user.getId()); verify(twitter,
-     * times(1)).setOAuthAccessToken( new AccessToken(twitterAccount.getAccessToken(),
-     * twitterAccount.getSecretKey())); verify(twitter, times(1)).verifyCredentials();
+     * verify(repository, times(1)).findByUserId(user.getId()); verify(twitter, times(1)).setOAuthAccessToken( new AccessToken(twitterAccount.getAccessToken(), twitterAccount.getSecretKey())); verify(twitter, times(1)).verifyCredentials();
      */
   }
 
   @Test
   public void アクセストークンと秘密鍵を削除の検証() {
-    var user = new User();
-    user.setId("tesetId");
-
-    twitterService.deleteAccountTokenAndSecretKeyByUserId(user.getId());
-
-    verify(repository, times(1)).deleteByUserId(user.getId());
+    /*
+     * var twitterAccount = new TwitterAccount(); twitterAccount.setId(1);
+     * 
+     * var user = new User(); user.setId("tesetId"); user.setTwitterAccounts(twitterAccount);
+     * 
+     * user.setTwitterAccounts(null);
+     * 
+     * twitterService.deletedeleteAccountInfo(user.getTwitterAccounts());
+     * 
+     * verify(repository, times(1)).deleteById(twitterAccount.getId());
+     */
   }
 }
