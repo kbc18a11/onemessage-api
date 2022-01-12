@@ -1,7 +1,6 @@
 package com.example.onemessageapi.config.security;
 
 import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
 import com.example.onemessageapi.repository.UserRepository;
 import com.example.onemessageapi.service.UserDetailsServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;

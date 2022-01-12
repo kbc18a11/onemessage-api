@@ -19,14 +19,14 @@ import java.util.*;
  */
 @ApiModel(description = "LINEアカウント情報")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-12T14:17:29.140063Z[Etc/UTC]")
-public class GetLineAccountResponse   {
+public class CreateLineAccountResponse   {
   @JsonProperty("displayName")
   private String displayName;
 
   @JsonProperty("pictureUrl")
   private String pictureUrl;
 
-  public GetLineAccountResponse displayName(String displayName) {
+  public CreateLineAccountResponse displayName(String displayName) {
     this.displayName = displayName;
     return this;
   }
@@ -47,7 +47,7 @@ public class GetLineAccountResponse   {
     this.displayName = displayName;
   }
 
-  public GetLineAccountResponse pictureUrl(String pictureUrl) {
+  public CreateLineAccountResponse pictureUrl(String pictureUrl) {
     this.pictureUrl = pictureUrl;
     return this;
   }
@@ -77,9 +77,9 @@ public class GetLineAccountResponse   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GetLineAccountResponse getLineAccountResponse = (GetLineAccountResponse) o;
-    return Objects.equals(this.displayName, getLineAccountResponse.displayName) &&
-        Objects.equals(this.pictureUrl, getLineAccountResponse.pictureUrl);
+    CreateLineAccountResponse createLineAccountResponse = (CreateLineAccountResponse) o;
+    return Objects.equals(this.displayName, createLineAccountResponse.displayName) &&
+        Objects.equals(this.pictureUrl, createLineAccountResponse.pictureUrl);
   }
 
   @Override
@@ -90,7 +90,7 @@ public class GetLineAccountResponse   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GetLineAccountResponse {\n");
+    sb.append("class CreateLineAccountResponse {\n");
     
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    pictureUrl: ").append(toIndentedString(pictureUrl)).append("\n");

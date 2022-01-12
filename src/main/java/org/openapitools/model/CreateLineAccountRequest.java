@@ -1,25 +1,27 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+
+
+import java.util.*;
 
 /**
  * LINEアカウント登録情報
  */
 @ApiModel(description = "LINEアカウント登録情報")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-11T14:32:38.605032Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-12T14:17:29.140063Z[Etc/UTC]")
 public class CreateLineAccountRequest   {
   @JsonProperty("channelToken")
   private String channelToken;
-
-  @JsonProperty("channelSecretKey")
-  private String channelSecretKey;
 
   public CreateLineAccountRequest channelToken(String channelToken) {
     this.channelToken = channelToken;
@@ -42,27 +44,6 @@ public class CreateLineAccountRequest   {
     this.channelToken = channelToken;
   }
 
-  public CreateLineAccountRequest channelSecretKey(String channelSecretKey) {
-    this.channelSecretKey = channelSecretKey;
-    return this;
-  }
-
-  /**
-   * LINEのアクセス用秘密鍵
-   * @return channelSecretKey
-  */
-  @ApiModelProperty(required = true, value = "LINEのアクセス用秘密鍵")
-  @NotNull
-
-
-  public String getChannelSecretKey() {
-    return channelSecretKey;
-  }
-
-  public void setChannelSecretKey(String channelSecretKey) {
-    this.channelSecretKey = channelSecretKey;
-  }
-
 
   @Override
   public boolean equals(Object o) {
@@ -73,13 +54,12 @@ public class CreateLineAccountRequest   {
       return false;
     }
     CreateLineAccountRequest createLineAccountRequest = (CreateLineAccountRequest) o;
-    return Objects.equals(this.channelToken, createLineAccountRequest.channelToken) &&
-        Objects.equals(this.channelSecretKey, createLineAccountRequest.channelSecretKey);
+    return Objects.equals(this.channelToken, createLineAccountRequest.channelToken);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(channelToken, channelSecretKey);
+    return Objects.hash(channelToken);
   }
 
   @Override
@@ -88,7 +68,6 @@ public class CreateLineAccountRequest   {
     sb.append("class CreateLineAccountRequest {\n");
     
     sb.append("    channelToken: ").append(toIndentedString(channelToken)).append("\n");
-    sb.append("    channelSecretKey: ").append(toIndentedString(channelSecretKey)).append("\n");
     sb.append("}");
     return sb.toString();
   }

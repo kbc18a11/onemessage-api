@@ -31,10 +31,6 @@ public class LineAccount {
   @Column(length = 255, unique = true, nullable = false)
   private String channelToken;
 
-  // 秘密鍵
-  @Column(length = 255, unique = true, nullable = false)
-  private String channelSecretKey;
-
   // 作成日時
   @Column(nullable = false)
   private Date createAt;
