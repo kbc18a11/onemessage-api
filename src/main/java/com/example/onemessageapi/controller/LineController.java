@@ -3,11 +3,13 @@ package com.example.onemessageapi.controller;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import javax.validation.Valid;
+import com.example.onemessageapi.model.entitys.User;
 import com.example.onemessageapi.service.LineService;
 import com.example.onemessageapi.service.UserService;
 import org.openapitools.api.LineApi;
 import org.openapitools.model.CreateLineAccountRequest;
 import org.openapitools.model.CreateLineAccountResponse;
+import org.openapitools.model.GetLineAccountResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +39,8 @@ public class LineController implements LineApi {
   }
 
   @Override
-  public ResponseEntity<CreateLineAccountResponse> createLineAccount(@Valid CreateLineAccountRequest createLineAccountRequest) {
+  public ResponseEntity<CreateLineAccountResponse> createLineAccount(
+      @Valid CreateLineAccountRequest createLineAccountRequest) {
     // ユーザー情報の取得
     var user = userService
         .getLoginUser(getRequest().map(request -> (String) request.getAttribute("userId", 0)).get());
@@ -50,6 +53,35 @@ public class LineController implements LineApi {
       response.setPictureUrl(lineBotInfo.getPictureUrl());
 
       return new ResponseEntity<CreateLineAccountResponse>(response, HttpStatus.CREATED);
+    } catch (Exception e) {
+      System.err.println(e);
+
+      throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+    }
+  }
+
+  @Override
+  public ResponseEntity<GetLineAccountResponse> getLineAccount() {
+    User user;
+
+    try {
+      user = userService
+          .getLoginUser(getRequest().map(request -> (String) request.getAttribute("userId", 0)).get());
+
+      if (user.getLineAccount() == null)
+        throw new Exception();
+    } catch (Exception e) {
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "LINEアカウント情報が存在しません");
+    }
+
+    try {
+      var lineBotInfo = lineService.getBotInfo(user.getLineAccount().getChannelToken());
+
+      var response = new GetLineAccountResponse();
+      response.setDisplayName(lineBotInfo.getDisplayName());
+      response.setPictureUrl(lineBotInfo.getPictureUrl());
+
+      return new ResponseEntity<GetLineAccountResponse>(response, HttpStatus.OK);
     } catch (Exception e) {
       System.err.println(e);
 
