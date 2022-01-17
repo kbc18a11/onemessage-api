@@ -129,7 +129,6 @@ public class LineService {
 
       final BotApiResponse botApiResponse;
       botApiResponse = client.pushMessage(pushMessage).get();
-      System.out.println(botApiResponse);
     }
   }
 }
