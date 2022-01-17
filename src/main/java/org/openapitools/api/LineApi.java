@@ -7,6 +7,7 @@ package org.openapitools.api;
 
 import org.openapitools.model.CreateLineAccountRequest;
 import org.openapitools.model.CreateLineAccountResponse;
+import org.openapitools.model.GetLineAccountFriendsResponse;
 import org.openapitools.model.GetLineAccountResponse;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-12T14:17:29.140063Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-17T14:17:11.839899Z[Etc/UTC]")
 @Validated
 @Api(value = "line", description = "the line API")
 public interface LineApi {
@@ -157,6 +158,54 @@ public interface LineApi {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
                     String exampleString = "{ \"displayName\" : \"displayName\", \"pictureUrl\" : \"pictureUrl\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
+     * GET /line/account/friends : LINEアカウントの友達情報の取得
+     * ユーザーのLINEアカウントの友達情報の取得
+     *
+     * @param limit フォロワーの取得数 指定されない場合は、最大量まで取得される  (optional)
+     * @return OK (status code 200)
+     *         or Bad Request (status code 400)
+     *         or Unauthorized (status code 401)
+     *         or Internal Server Error (status code 500)
+     */
+    @ApiOperation(
+        tags = { "line" },
+        value = "LINEアカウントの友達情報の取得",
+        nickname = "getLineAccountFriends",
+        notes = "ユーザーのLINEアカウントの友達情報の取得",
+        response = GetLineAccountFriendsResponse.class,
+        authorizations = {
+            @Authorization(value = "Authorization")
+         }
+    )
+    @ApiResponses({
+        @ApiResponse(code = 200, message = "OK", response = GetLineAccountFriendsResponse.class),
+        @ApiResponse(code = 400, message = "Bad Request"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 500, message = "Internal Server Error")
+    })
+    @RequestMapping(
+        method = RequestMethod.GET,
+        value = "/line/account/friends",
+        produces = { "application/json" }
+    )
+    default ResponseEntity<GetLineAccountFriendsResponse> getLineAccountFriends(
+        @ApiParam(value = "フォロワーの取得数 指定されない場合は、最大量まで取得される ") @Valid @RequestParam(value = "limit", required = false) Integer limit
+    ) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"total\" : 0, \"friends\" : [ { \"id\" : \"id\" }, { \"id\" : \"id\" } ] }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

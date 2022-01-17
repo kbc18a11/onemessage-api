@@ -15,24 +15,24 @@ import javax.validation.constraints.*;
 import java.util.*;
 
 /**
- * 送信先のユーザー情報
+ * 友達情報
  */
-@ApiModel(description = "送信先のユーザー情報")
+@ApiModel(description = "友達情報")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-17T14:17:11.839899Z[Etc/UTC]")
-public class PostDmRequestAddresses   {
+public class GetLineAccountFriendsResponseFriends   {
   @JsonProperty("id")
   private String id;
 
-  public PostDmRequestAddresses id(String id) {
+  public GetLineAccountFriendsResponseFriends id(String id) {
     this.id = id;
     return this;
   }
 
   /**
-   * 送信先のユーザーID
+   * id
    * @return id
   */
-  @ApiModelProperty(required = true, value = "送信先のユーザーID")
+  @ApiModelProperty(required = true, value = "id")
   @NotNull
 
 
@@ -53,8 +53,8 @@ public class PostDmRequestAddresses   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PostDmRequestAddresses postDmRequestAddresses = (PostDmRequestAddresses) o;
-    return Objects.equals(this.id, postDmRequestAddresses.id);
+    GetLineAccountFriendsResponseFriends getLineAccountFriendsResponseFriends = (GetLineAccountFriendsResponseFriends) o;
+    return Objects.equals(this.id, getLineAccountFriendsResponseFriends.id);
   }
 
   @Override
@@ -65,7 +65,7 @@ public class PostDmRequestAddresses   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PostDmRequestAddresses {\n");
+    sb.append("class GetLineAccountFriendsResponseFriends {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");

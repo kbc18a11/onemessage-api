@@ -22,13 +22,15 @@ import java.util.*;
  * プラットフォームごとの送信先一覧
  */
 @ApiModel(description = "プラットフォームごとの送信先一覧")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-12T14:17:29.140063Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-17T14:17:11.839899Z[Etc/UTC]")
 public class PostDmRequestSendingAddresses   {
   /**
    * プラットフォームの種類
    */
   public enum PlatformTypeEnum {
-    TWITTER("twitter");
+    TWITTER("twitter"),
+    
+    LINE("line");
 
     private String value;
 
