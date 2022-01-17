@@ -5,6 +5,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.concurrent.ExecutionException;
 import javax.transaction.Transactional;
 import com.example.onemessageapi.model.LineBotInfo;
 import com.example.onemessageapi.model.LineFriendIds;
@@ -12,6 +13,10 @@ import com.example.onemessageapi.model.entitys.LineAccount;
 import com.example.onemessageapi.model.entitys.User;
 import com.example.onemessageapi.repository.LineRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.linecorp.bot.client.LineMessagingClient;
+import com.linecorp.bot.model.PushMessage;
+import com.linecorp.bot.model.message.TextMessage;
+import com.linecorp.bot.model.response.BotApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -102,5 +107,28 @@ public class LineService {
     var friendIds = objectMapper.readValue(response.body(), LineFriendIds.class);
 
     return friendIds;
+  }
+
+  /**
+   * DMを送信
+   * 
+   * @param twitterAccount
+   * @param message
+   * @param sendIds
+   * @throws ExecutionException
+   * @throws InterruptedException
+   * @throws TwitterException
+   */
+  public void postDm(String channelToken, String message, String[] sendIds) throws InterruptedException, ExecutionException {
+    var client = LineMessagingClient
+        .builder(channelToken)
+        .build();
+
+    for (String sendId : sendIds) {
+      var pushMessage = new PushMessage(sendId, new TextMessage(message));
+
+      final BotApiResponse botApiResponse;
+      botApiResponse = client.pushMessage(pushMessage).get();
+    }
   }
 }
