@@ -7,6 +7,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import javax.transaction.Transactional;
 import com.example.onemessageapi.model.LineBotInfo;
+import com.example.onemessageapi.model.LineFriendIds;
 import com.example.onemessageapi.model.entitys.LineAccount;
 import com.example.onemessageapi.model.entitys.User;
 import com.example.onemessageapi.repository.LineRepository;
@@ -77,5 +78,29 @@ public class LineService {
   @Transactional
   public void deleteAccountInfo(LineAccount lineAccount) {
     repository.deleteById(lineAccount.getId());
+  }
+
+  /**
+   * 友達IDの一覧を取得
+   * 
+   * @param channelToken
+   * @return
+   * @throws IOException
+   * @throws InterruptedException
+   */
+  public LineFriendIds getFriendIds(String channelToken) throws IOException, InterruptedException {
+    // 友達ID一覧取得APIにリクエスト
+    var client = HttpClient.newHttpClient();
+    var request = HttpRequest.newBuilder()
+        .uri(URI.create("https://api.line.me/v2/bot/followers/ids"))
+        .header("Authorization", "Bearer " + channelToken)
+        .build();
+    var response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+    // レスポンスボディをLineFriendIdsパーシング
+    var objectMapper = new ObjectMapper();
+    var friendIds = objectMapper.readValue(response.body(), LineFriendIds.class);
+
+    return friendIds;
   }
 }

@@ -18,7 +18,7 @@ import java.util.*;
  * 初期登録時のユーザー情報
  */
 @ApiModel(description = "初期登録時のユーザー情報")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-12T14:17:29.140063Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-17T14:17:11.839899Z[Etc/UTC]")
 public class CreateMeRequest   {
   @JsonProperty("name")
   private String name;
