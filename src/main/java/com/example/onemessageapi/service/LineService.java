@@ -125,10 +125,9 @@ public class LineService {
         .build();
 
     for (String sendId : sendIds) {
+      // メッセージの送信
       var pushMessage = new PushMessage(sendId, new TextMessage(message));
-
-      final BotApiResponse botApiResponse;
-      botApiResponse = client.pushMessage(pushMessage).get();
+      client.pushMessage(pushMessage).get();
     }
   }
 }
