@@ -5,6 +5,6 @@ if [ -n "$PID" ]; then
   kill $PID
 fi
 
-mvn package spring-boot:repackage
+mvn package spring-boot:repackage -Dmaven.test.skip
 
 nohup java -jar target/onemessageapi-0.0.1-SNAPSHOT.jar &
