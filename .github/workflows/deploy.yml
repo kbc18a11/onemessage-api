@@ -36,5 +36,3 @@ jobs:
           port: ${{secrets.SSH_PORT }}
           script: |
             cd onemessage
-            git pull
-            sh deploy.sh
