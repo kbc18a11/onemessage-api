@@ -33,5 +33,5 @@ build/
 .vscode/
 
 db
-src/main/resources/application.properties
-src/main/resources/twitter4j.properties
+**/src/main/resources/application.properties
+**/src/main/resources/twitter4j.properties
