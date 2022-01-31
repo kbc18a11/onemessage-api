@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
+import org.openapitools.model.GetDmResponseMessages;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -15,33 +18,40 @@ import javax.validation.constraints.*;
 import java.util.*;
 
 /**
- * 送信先のユーザー情報
+ * DM送信情報
  */
-@ApiModel(description = "送信先のユーザー情報")
+@ApiModel(description = "DM送信情報")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-31T00:47:22.927123Z[Etc/UTC]")
-public class PostDmRequestAddresses   {
-  @JsonProperty("id")
-  private String id;
+public class GetDmResponse   {
+  @JsonProperty("messages")
+  @Valid
+  private List<GetDmResponseMessages> messages = new ArrayList<>();
 
-  public PostDmRequestAddresses id(String id) {
-    this.id = id;
+  public GetDmResponse messages(List<GetDmResponseMessages> messages) {
+    this.messages = messages;
+    return this;
+  }
+
+  public GetDmResponse addMessagesItem(GetDmResponseMessages messagesItem) {
+    this.messages.add(messagesItem);
     return this;
   }
 
   /**
-   * 送信先のユーザーID
-   * @return id
+   * メッセージ送信履歴一覧
+   * @return messages
   */
-  @ApiModelProperty(required = true, value = "送信先のユーザーID")
+  @ApiModelProperty(required = true, value = "メッセージ送信履歴一覧")
   @NotNull
 
+  @Valid
 
-  public String getId() {
-    return id;
+  public List<GetDmResponseMessages> getMessages() {
+    return messages;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setMessages(List<GetDmResponseMessages> messages) {
+    this.messages = messages;
   }
 
 
@@ -53,21 +63,21 @@ public class PostDmRequestAddresses   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PostDmRequestAddresses postDmRequestAddresses = (PostDmRequestAddresses) o;
-    return Objects.equals(this.id, postDmRequestAddresses.id);
+    GetDmResponse getDmResponse = (GetDmResponse) o;
+    return Objects.equals(this.messages, getDmResponse.messages);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(messages);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PostDmRequestAddresses {\n");
+    sb.append("class GetDmResponse {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    messages: ").append(toIndentedString(messages)).append("\n");
     sb.append("}");
     return sb.toString();
   }

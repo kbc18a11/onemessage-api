@@ -21,7 +21,7 @@ import java.util.*;
  * Twitterのフォロワー一覧
  */
 @ApiModel(description = "Twitterのフォロワー一覧")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-17T14:17:11.839899Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-31T00:47:22.927123Z[Etc/UTC]")
 public class GetTwitterAccountFollowersResponse   {
   @JsonProperty("total")
   private Integer total;

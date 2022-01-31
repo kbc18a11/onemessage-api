@@ -18,7 +18,7 @@ import java.util.*;
  * LINEアカウント情報
  */
 @ApiModel(description = "LINEアカウント情報")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-17T14:17:11.839899Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-31T00:47:22.927123Z[Etc/UTC]")
 public class CreateLineAccountResponse   {
   @JsonProperty("displayName")
   private String displayName;

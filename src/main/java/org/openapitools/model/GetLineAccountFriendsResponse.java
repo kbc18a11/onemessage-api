@@ -21,7 +21,7 @@ import java.util.*;
  * LINEの友達情報一覧
  */
 @ApiModel(description = "LINEの友達情報一覧")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-17T14:17:11.839899Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-31T00:47:22.927123Z[Etc/UTC]")
 public class GetLineAccountFriendsResponse   {
   @JsonProperty("total")
   private Integer total;

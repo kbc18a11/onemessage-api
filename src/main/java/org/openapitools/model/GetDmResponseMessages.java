@@ -6,9 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.List;
-import org.openapitools.model.PostDmRequestSendingAddresses;
+import java.time.OffsetDateTime;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -18,31 +16,31 @@ import javax.validation.constraints.*;
 import java.util.*;
 
 /**
- * DM送信情報
+ * メッセージ送信履歴情報
  */
-@ApiModel(description = "DM送信情報")
+@ApiModel(description = "メッセージ送信履歴情報")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-31T00:47:22.927123Z[Etc/UTC]")
-public class PostDmRequest   {
+public class GetDmResponseMessages   {
   @JsonProperty("message")
   private String message;
 
-  @JsonProperty("sendingAddresses")
-  @Valid
-  private List<PostDmRequestSendingAddresses> sendingAddresses = new ArrayList<>();
+  @JsonProperty("postDateTime")
+  @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME)
+  private OffsetDateTime postDateTime;
 
-  public PostDmRequest message(String message) {
+  public GetDmResponseMessages message(String message) {
     this.message = message;
     return this;
   }
 
   /**
-   * メッセージ
+   * メッセージ送信履歴
    * @return message
   */
-  @ApiModelProperty(required = true, value = "メッセージ")
+  @ApiModelProperty(required = true, value = "メッセージ送信履歴")
   @NotNull
 
-@Size(min = 1, max = 10000) 
+
   public String getMessage() {
     return message;
   }
@@ -51,31 +49,26 @@ public class PostDmRequest   {
     this.message = message;
   }
 
-  public PostDmRequest sendingAddresses(List<PostDmRequestSendingAddresses> sendingAddresses) {
-    this.sendingAddresses = sendingAddresses;
-    return this;
-  }
-
-  public PostDmRequest addSendingAddressesItem(PostDmRequestSendingAddresses sendingAddressesItem) {
-    this.sendingAddresses.add(sendingAddressesItem);
+  public GetDmResponseMessages postDateTime(OffsetDateTime postDateTime) {
+    this.postDateTime = postDateTime;
     return this;
   }
 
   /**
-   * 送信先
-   * @return sendingAddresses
+   * メッセージ送信日時
+   * @return postDateTime
   */
-  @ApiModelProperty(required = true, value = "送信先")
+  @ApiModelProperty(required = true, value = "メッセージ送信日時")
   @NotNull
 
   @Valid
 
-  public List<PostDmRequestSendingAddresses> getSendingAddresses() {
-    return sendingAddresses;
+  public OffsetDateTime getPostDateTime() {
+    return postDateTime;
   }
 
-  public void setSendingAddresses(List<PostDmRequestSendingAddresses> sendingAddresses) {
-    this.sendingAddresses = sendingAddresses;
+  public void setPostDateTime(OffsetDateTime postDateTime) {
+    this.postDateTime = postDateTime;
   }
 
 
@@ -87,23 +80,23 @@ public class PostDmRequest   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PostDmRequest postDmRequest = (PostDmRequest) o;
-    return Objects.equals(this.message, postDmRequest.message) &&
-        Objects.equals(this.sendingAddresses, postDmRequest.sendingAddresses);
+    GetDmResponseMessages getDmResponseMessages = (GetDmResponseMessages) o;
+    return Objects.equals(this.message, getDmResponseMessages.message) &&
+        Objects.equals(this.postDateTime, getDmResponseMessages.postDateTime);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(message, sendingAddresses);
+    return Objects.hash(message, postDateTime);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PostDmRequest {\n");
+    sb.append("class GetDmResponseMessages {\n");
     
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("    sendingAddresses: ").append(toIndentedString(sendingAddresses)).append("\n");
+    sb.append("    postDateTime: ").append(toIndentedString(postDateTime)).append("\n");
     sb.append("}");
     return sb.toString();
   }
