@@ -18,7 +18,7 @@ import java.util.*;
  * 送信先のユーザー情報
  */
 @ApiModel(description = "送信先のユーザー情報")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-17T14:17:11.839899Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-31T00:47:22.927123Z[Etc/UTC]")
 public class PostDmRequestAddresses   {
   @JsonProperty("id")
   private String id;
