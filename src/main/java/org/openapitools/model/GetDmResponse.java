@@ -22,7 +22,7 @@ import java.util.*;
  */
 @ApiModel(description = "DM送信情報")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-31T00:47:22.927123Z[Etc/UTC]")
-public class GetDmResponse   {
+public class GetDmResponse {
   @JsonProperty("messages")
   @Valid
   private List<GetDmResponseMessages> messages = new ArrayList<>();
@@ -39,8 +39,9 @@ public class GetDmResponse   {
 
   /**
    * メッセージ送信履歴一覧
+   * 
    * @return messages
-  */
+   */
   @ApiModelProperty(required = true, value = "メッセージ送信履歴一覧")
   @NotNull
 
@@ -76,15 +77,14 @@ public class GetDmResponse   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetDmResponse {\n");
-    
+
     sb.append("    messages: ").append(toIndentedString(messages)).append("\n");
     sb.append("}");
     return sb.toString();
   }
 
   /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
+   * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
     if (o == null) {
